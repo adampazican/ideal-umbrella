@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.ideal_umbrella.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_startScreenFragment"
+            app:destination="@id/startScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startScreenFragment"
+        android:name="com.example.ideal_umbrella.StartScreenFragment"
+        android:label="fragment_start_screen"
+        tools:layout="@layout/fragment_start_screen" >
+        <action
+            android:id="@+id/action_startScreenFragment_to_chooseMealFragment"
+            app:destination="@id/chooseMealFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseMealFragment"
+        android:name="com.example.ideal_umbrella.ChooseMealFragment"
+        android:label="fragment_choose_meal_list"
+        tools:layout="@layout/fragment_choose_meal_list" />
+</navigation>
