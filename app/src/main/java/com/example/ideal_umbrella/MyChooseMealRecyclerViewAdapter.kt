@@ -8,17 +8,11 @@ import android.widget.TextView
 
 
 import com.example.ideal_umbrella.ChooseMealFragment.OnListFragmentInteractionListener
-import com.example.ideal_umbrella.dummy.DummyContent.DummyItem
 
 import kotlinx.android.synthetic.main.fragment_choose_meal.view.*
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyChooseMealRecyclerViewAdapter(
-    private val mValues: List<DummyItem>,
+    private val mValues: List<Meal>,
     private val mListener: OnListFragmentInteractionListener?
 ) : RecyclerView.Adapter<MyChooseMealRecyclerViewAdapter.ViewHolder>() {
 
@@ -26,9 +20,8 @@ class MyChooseMealRecyclerViewAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as DummyItem
-            // Notify the active callbacks interface (the activity, if the fragment is attached to
-            // one) that an item has been selected.
+            val item = v.tag as Meal
+
             mListener?.onListFragmentInteraction(item)
         }
     }
@@ -41,8 +34,8 @@ class MyChooseMealRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdView.text = item.id
-        holder.mContentView.text = item.content
+        holder.mIdView.text = item.id.toString()
+        holder.mContentView.text = item.dishName
 
         with(holder.mView) {
             tag = item

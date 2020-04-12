@@ -2,34 +2,30 @@ package com.example.ideal_umbrella
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 
-import com.example.ideal_umbrella.dummy.DummyContent
-import com.example.ideal_umbrella.dummy.DummyContent.DummyItem
-
-/**
- * A fragment representing a list of Items.
- * Activities containing this fragment MUST implement the
- * [ChooseMealFragment.OnListFragmentInteractionListener] interface.
- */
 class ChooseMealFragment : Fragment() {
 
-    // TODO: Customize parameters
     private var columnCount = 1
-
     private var listener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
+            columnCount = it.getInt("column-count")
         }
     }
 
@@ -46,7 +42,18 @@ class ChooseMealFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyChooseMealRecyclerViewAdapter(DummyContent.ITEMS, listener)
+                adapter = MyChooseMealRecyclerViewAdapter(MealContent.meals, listener)
+                MealContent.addItem(Meal(0, "dd", MealType.MEAL_SOUP, 10));
+                if (MealContent.meals.isEmpty()) {
+                    Thread {
+                        val url = URL("http://9a7b6458.ngrok.io:4000/daily-menu");
+                        val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
+                        conn.connect();
+                        val inputStream: InputStream = conn.inputStream
+                        val reader = BufferedReader(InputStreamReader(inputStream, "UTF-8"))
+                        Log.d("ChooseMealFragment", reader.toString());
+                    }.start();
+                }
             }
         }
         return view
@@ -66,34 +73,8 @@ class ChooseMealFragment : Fragment() {
         listener = null
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson
-     * [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem?)
-    }
 
-    companion object {
-
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            ChooseMealFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
+    interface OnListFragmentInteractionListener {//TODO: new file
+        fun onListFragmentInteraction(item: Meal?)
     }
 }

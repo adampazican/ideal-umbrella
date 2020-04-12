@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-const DISH_SOUP = 0
-const DISH_MAIN = 1
+const MEAL_SOUP = 0
+const MEAL_MAIN = 1
 
 const version = 0;
 
@@ -24,13 +24,13 @@ app.get('/update-db', (req, res) => {
         {
             "id": 0,
             "dish_name": "kapustnica",
-            "dish_type": DISH_SOUP,
+            "dish_type": MEAL_SOUP,
             "price": 20
         },
         {
             "id": 0,
             "dish_name": "hamburger",
-            "dish_type": DISH_MAIN,
+            "dish_type": MEAL_MAIN,
             "price": 20
         },
     ]);
