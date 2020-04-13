@@ -18,9 +18,9 @@ class StartScreenFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_start_screen, container, false);
         val startOrderButton = view?.findViewById(R.id.start_order_button) as Button;
 
-        startOrderButton?.setOnClickListener {
+        startOrderButton.setOnClickListener {
             val bundle = Bundle();
-            bundle.putInt("column-count",  2);
+            bundle.putInt("meal-type",  0)
             Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.chooseMealFragment, bundle);
         }
 
