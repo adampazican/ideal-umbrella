@@ -11,7 +11,7 @@ interface MealDao {
     fun getAll(): List<Meal>
 
     @Query("SELECT * FROM meal WHERE meal_type = :mealType")
-    fun loadAllByIds(mealType: Int): List<Meal>
+    fun getAllByMealType(mealType: Int): List<Meal>
 
     @Insert
     fun insertAll(vararg meals: Meal)

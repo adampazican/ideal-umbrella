@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.room.Room
+import com.example.ideal_umbrella.ChooseMeal.MealType
 import com.example.ideal_umbrella.Database.AppDatabase
 import com.example.ideal_umbrella.Database.Meal
 
@@ -25,7 +26,7 @@ class StartScreenFragment : Fragment() {
 
         startOrderButton.setOnClickListener {
             val bundle = Bundle();
-            bundle.putInt("meal-type",  0)
+            bundle.putInt("meal-type",  MealType.MEAL_SOUP.value)
             Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.chooseMealFragment, bundle);
         }
 

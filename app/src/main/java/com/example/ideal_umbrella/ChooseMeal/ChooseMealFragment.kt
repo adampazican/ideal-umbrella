@@ -15,14 +15,14 @@ import com.example.ideal_umbrella.Database.AppDatabase
 
 class ChooseMealFragment : Fragment() {
 
-    private var mealType: MealType? = null
+    private var mealType: Int = 0 //TODO: null by default all????? or no
     private var listener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            mealType = MealType.fromInt(it.getInt("meal-type"))
+            mealType = it.getInt("meal-type")
         }
     }
 
@@ -37,20 +37,22 @@ class ChooseMealFragment : Fragment() {
                 layoutManager = LinearLayoutManager(context)
                 adapter = MyChooseMealRecyclerViewAdapter(MealContent.meals, listener)
 
-                val db = Room.databaseBuilder(
-                    context,
-                    AppDatabase::class.java, "waiter"
-                ).build()
+                if (MealContent.meals.isEmpty()) {
+                    val db = Room.databaseBuilder(
+                        context,
+                        AppDatabase::class.java, "waiter"
+                    ).build()
 
-                Thread {
-                    db.mealDao().getAll().forEach {
-                        MealContent.addItem(Meal(it.id, it.mealName, it.mealType, it.price))
-                    }
+                    Thread {
+                        db.mealDao().getAllByMealType(mealType).forEach {
+                            MealContent.addItem(Meal(it.id, it.mealName, it.mealType, it.price))
+                        }
 
-                    activity?.runOnUiThread {
-                        (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
-                    }
-                }.start()
+                        activity?.runOnUiThread {
+                            (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
+                        }
+                    }.start()
+                }
             }
         }
         return view
