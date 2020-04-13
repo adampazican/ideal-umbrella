@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.ideal_umbrella.*
+import com.example.ideal_umbrella.Database.AppDatabase
 
 class ChooseMealFragment : Fragment() {
 
@@ -20,7 +22,7 @@ class ChooseMealFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            mealType = it.get("meal-type") as MealType
+            mealType = MealType.fromInt(it.getInt("meal-type"))
         }
     }
 
@@ -35,14 +37,20 @@ class ChooseMealFragment : Fragment() {
                 layoutManager = LinearLayoutManager(context)
                 adapter = MyChooseMealRecyclerViewAdapter(MealContent.meals, listener)
 
-                if (MealContent.meals.isEmpty()) {
-                    HttpHandler.getAllMeals { mealArray ->
-                        MealContent.addItems(mealArray)
-                        activity?.runOnUiThread {
-                            (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
-                        }
+                val db = Room.databaseBuilder(
+                    context,
+                    AppDatabase::class.java, "waiter"
+                ).build()
+
+                Thread {
+                    db.mealDao().getAll().forEach {
+                        MealContent.addItem(Meal(it.id, it.mealName, it.mealType, it.price))
                     }
-                }
+
+                    activity?.runOnUiThread {
+                        (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
+                    }
+                }.start()
             }
         }
         return view
