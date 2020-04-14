@@ -3,16 +3,12 @@ package com.example.ideal_umbrella.ChooseMeal
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.ideal_umbrella.*
-import com.example.ideal_umbrella.Database.AppDatabase
 
 class ChooseMealFragment : Fragment() {
 
@@ -21,6 +17,7 @@ class ChooseMealFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MainActivity.orderSummary?.setVisible(false)
 
         arguments?.let {
             mealType = it.getInt("meal-type")
@@ -36,20 +33,27 @@ class ChooseMealFragment : Fragment() {
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = MyChooseMealRecyclerViewAdapter(MealContent.meals, listener)
 
-                val db = MainActivity.db
+                if(MealContent.allMeals.isEmpty()) {
+                    Thread {
+                        val db = MainActivity.db
+                        db.mealDao().getAll().forEach {
+                            MealContent.allMeals.add(Meal(it.id, it.mealName, it.mealType, it.price))
+                        }
 
-                Thread {
-                    MealContent.meals.clear()
-                    db.mealDao().getAllByMealType(mealType).forEach {
-                        MealContent.addItem(Meal(it.id, it.mealName, it.mealType, it.price))
-                    }
+                        MealContent.showingMeals.addAll(MealContent.allMeals.filter { it.mealType?.value == mealType })
 
-                    activity?.runOnUiThread {
-                        (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
-                    }
-                }.start()
+                        activity?.runOnUiThread {
+                            (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
+                        }
+                    }.start()
+                }
+                else {
+                    MealContent.showingMeals.clear()
+                    MealContent.showingMeals.addAll(MealContent.allMeals.filter { it.mealType?.value == mealType })
+                }
+
+                adapter = MyChooseMealRecyclerViewAdapter(MealContent.showingMeals, listener)
             }
         }
         return view

@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.room.Room
 import com.example.ideal_umbrella.ChooseMeal.Meal
@@ -22,6 +21,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
     companion object {
         lateinit var db: AppDatabase
         var orderSummary: MenuItem? = null
+        var orderPlace: MenuItem? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,15 +80,19 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.order_summary_button, menu)
+        menuInflater.inflate(R.menu.order_place, menu)
         orderSummary = menu?.getItem(0)
+        orderPlace = menu?.getItem(1)
         return super.onCreateOptionsMenu(menu)
     }
 
-    // actions on click menu items
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_favorite -> {
-            // User chose the "Print" item
-            Toast.makeText(this,"Print action",Toast.LENGTH_LONG).show()
+        R.id.action_order_summary -> {
+            Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.orderFragment)
+            true
+        }
+        R.id.action_order_place -> {
+            1-1 //TODO: add to orders, show orders view
             true
         }
         else -> {
