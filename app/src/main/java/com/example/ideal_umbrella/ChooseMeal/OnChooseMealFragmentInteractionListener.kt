@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
-interface OnListFragmentInteractionListener {
+interface OnChooseMealFragmentInteractionListener {
     fun onListFragmentInteractionPlus(button: Button, item: Meal?, adapter: MyChooseMealRecyclerViewAdapter, numberView: TextView)
     fun onListFragmentInteractionMinus(button: Button, item: Meal?, adapter: MyChooseMealRecyclerViewAdapter, numberView: TextView)
 }

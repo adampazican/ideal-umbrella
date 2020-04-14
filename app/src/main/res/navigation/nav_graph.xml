@@ -20,12 +20,21 @@
         android:label="fragment_start_screen"
         tools:layout="@layout/fragment_start_screen" >
         <action
-            android:id="@+id/action_startScreenFragment_to_chooseMealFragment"
-            app:destination="@id/chooseMealFragment" />
+            android:id="@+id/action_startScreenFragment_to_mealTypeFragment"
+            app:destination="@id/mealTypeFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseMealFragment"
         android:name="com.example.ideal_umbrella.ChooseMeal.ChooseMealFragment"
         android:label="fragment_choose_meal_list"
         tools:layout="@layout/fragment_choose_meal_list" />
+    <fragment
+        android:id="@+id/mealTypeFragment"
+        android:name="com.example.ideal_umbrella.MealTypeMenu.MealTypeFragment"
+        android:label="fragment_meal_type_list"
+        tools:layout="@layout/fragment_meal_type_list" >
+        <action
+            android:id="@+id/action_mealTypeFragment_to_chooseMealFragment"
+            app:destination="@id/chooseMealFragment" />
+    </fragment>
 </navigation>

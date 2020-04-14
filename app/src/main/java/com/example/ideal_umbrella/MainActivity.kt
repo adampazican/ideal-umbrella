@@ -1,27 +1,37 @@
 package com.example.ideal_umbrella
 
+import android.app.Activity
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.room.Room
 import com.example.ideal_umbrella.ChooseMeal.Meal
 import com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter
-import com.example.ideal_umbrella.ChooseMeal.OnListFragmentInteractionListener
+import com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener
 import com.example.ideal_umbrella.Database.AppDatabase
+import com.example.ideal_umbrella.MealTypeMenu.MealType
+import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionListener
 
-class MainActivity : AppCompatActivity(), OnListFragmentInteractionListener {
-//    @JvmStatic
-    lateinit var db: AppDatabase //TODO: check later
+class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener {
+    companion object {
+        lateinit var db: AppDatabase
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main) //TODO: make new fragment with list of types of meal (dynamically added from enum), table number and big order button
-//        db = Room.databaseBuilder(
-//            this,
-//            AppDatabase::class.java, "waiter"
-//        ).build()
+        db = Room.databaseBuilder(
+            this,
+            AppDatabase::class.java, "waiter"
+        ).build()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        db.close()
     }
 
     override fun onListFragmentInteractionPlus(
@@ -51,6 +61,14 @@ class MainActivity : AppCompatActivity(), OnListFragmentInteractionListener {
                 if (item.numberOfOrders == 0)
                     numberView.setTextColor(Color.parseColor("#000000"))
             }
+        }
+    }
+
+    override fun onListFragmentInteraction(item: MealType?) {
+        if (item != null) {
+            val bundle = Bundle();
+            bundle.putInt("meal-type",  item.value)
+            Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.chooseMealFragment, bundle)
         }
     }
 }

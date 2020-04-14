@@ -1,8 +1,8 @@
-package com.example.ideal_umbrella.ChooseMeal
+package com.example.ideal_umbrella.MealTypeMenu
 
 enum class MealType(val value: Int) {
-    MEAL_SOUP(0),
-    Meal_MAIN(1)
+    SOUP(0),
+    MAIN_MEAL(1)
     ;
 
     companion object {

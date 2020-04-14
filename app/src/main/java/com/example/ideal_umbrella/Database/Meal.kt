@@ -3,7 +3,7 @@ package com.example.ideal_umbrella.Database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.ideal_umbrella.ChooseMeal.MealType
+import com.example.ideal_umbrella.MealTypeMenu.MealType
 
 @Entity
 data class Meal(

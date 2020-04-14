@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_choose_meal.view.*
 
 class MyChooseMealRecyclerViewAdapter(
     private val mValues: List<Meal>,
-    private val mListener: OnListFragmentInteractionListener?
+    private val mListener: OnChooseMealFragmentInteractionListener?
 ) : RecyclerView.Adapter<MyChooseMealRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -1,7 +1,7 @@
 package com.example.ideal_umbrella
 
 import com.example.ideal_umbrella.ChooseMeal.Meal
-import com.example.ideal_umbrella.ChooseMeal.MealType
+import com.example.ideal_umbrella.MealTypeMenu.MealType
 import org.json.JSONArray
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -10,7 +10,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 object HttpHandler {
-    const val PREFIX = "https://c721bada.ngrok.io"
+    const val PREFIX = "https://926321cb.ngrok.io"
     const val UPDATE_DB = PREFIX + "/update-db"
 
     fun getAllMeals(callback: (mealArray: ArrayList<Meal>?, success: Boolean) -> Unit) {

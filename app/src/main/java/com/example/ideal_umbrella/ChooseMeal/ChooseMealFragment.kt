@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -15,8 +14,8 @@ import com.example.ideal_umbrella.Database.AppDatabase
 
 class ChooseMealFragment : Fragment() {
 
-    private var mealType: Int = 0 //TODO: null by default all????? or no
-    private var listener: OnListFragmentInteractionListener? = null
+    private var mealType: Int = 0
+    private var listener: OnChooseMealFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,22 +36,18 @@ class ChooseMealFragment : Fragment() {
                 layoutManager = LinearLayoutManager(context)
                 adapter = MyChooseMealRecyclerViewAdapter(MealContent.meals, listener)
 
-                if (MealContent.meals.isEmpty()) {
-                    val db = Room.databaseBuilder(
-                        context,
-                        AppDatabase::class.java, "waiter"
-                    ).build()
+                val db = MainActivity.db
 
-                    Thread {
-                        db.mealDao().getAllByMealType(mealType).forEach {
-                            MealContent.addItem(Meal(it.id, it.mealName, it.mealType, it.price))
-                        }
+                Thread {
+                    MealContent.meals.clear()
+                    db.mealDao().getAllByMealType(mealType).forEach {
+                        MealContent.addItem(Meal(it.id, it.mealName, it.mealType, it.price))
+                    }
 
-                        activity?.runOnUiThread {
-                            (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
-                        }
-                    }.start()
-                }
+                    activity?.runOnUiThread {
+                        (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
+                    }
+                }.start()
             }
         }
         return view
@@ -60,7 +55,7 @@ class ChooseMealFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnListFragmentInteractionListener) {
+        if (context is OnChooseMealFragmentInteractionListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")

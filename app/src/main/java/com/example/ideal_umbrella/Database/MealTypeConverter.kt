@@ -1,7 +1,7 @@
 package com.example.ideal_umbrella.Database
 
 import androidx.room.TypeConverter
-import com.example.ideal_umbrella.ChooseMeal.MealType
+import com.example.ideal_umbrella.MealTypeMenu.MealType
 
 object MealTypeConverter {
 
