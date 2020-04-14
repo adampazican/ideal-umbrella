@@ -5,5 +5,5 @@ import java.util.ArrayList
 object MealContent {
     val showingMeals: MutableList<Meal> = ArrayList()
     val allMeals: MutableList<Meal> = ArrayList()
-    val tableNumber: Int = 0
+    var tableNumber: Int = 0
 }
