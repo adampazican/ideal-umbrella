@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.Navigation
 import com.example.ideal_umbrella.ChooseMeal.MealContent
 
+
 class TablesDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
@@ -17,6 +18,7 @@ class TablesDialog : DialogFragment() {
             val view = inflater.inflate(R.layout.dialog_table_number, null)
             val tableNumberInput = view.findViewById(R.id.table_number_input) as EditText
             tableNumberInput.transformationMethod = null
+            tableNumberInput.requestFocus()
 
             builder.setView(view)
                 .setTitle("Table number")

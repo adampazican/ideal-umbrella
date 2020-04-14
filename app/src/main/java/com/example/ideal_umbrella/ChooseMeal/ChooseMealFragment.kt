@@ -17,7 +17,7 @@ class ChooseMealFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainActivity.orderSummary?.setVisible(false)
+        MainActivity.orderSummary?.setVisible(false) //TODO: hide this on destroy view probably so its not patchy everywhere
 
         arguments?.let {
             mealType = it.getInt("meal-type")

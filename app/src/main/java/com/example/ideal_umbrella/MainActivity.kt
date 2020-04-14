@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             true
         }
         R.id.action_order_place -> {
-            OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber))
+            OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price!! * meal.numberOfOrders }))
             MealContent.allMeals.clear()
             1-1 //TODO: add to orders, show orders view
             true

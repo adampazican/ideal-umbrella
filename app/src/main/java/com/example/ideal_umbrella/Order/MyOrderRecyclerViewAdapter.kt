@@ -23,8 +23,8 @@ class MyOrderRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
         holder.mIdView.text = item.mealName
-        holder.mContentView.text = item.numberOfOrders.toString()
-        holder.mPriceView.text = (item.price?.times(item.numberOfOrders)).toString()
+        holder.mContentView.text = item.numberOfOrders.toString() + " x"
+        holder.mPriceView.text = (item.price?.times(item.numberOfOrders)).toString() + " €"
     }
 
     override fun getItemCount(): Int = mValues.size
