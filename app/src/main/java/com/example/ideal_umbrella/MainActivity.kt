@@ -11,11 +11,14 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.room.Room
 import com.example.ideal_umbrella.ChooseMeal.Meal
+import com.example.ideal_umbrella.ChooseMeal.MealContent
 import com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter
 import com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener
 import com.example.ideal_umbrella.Database.AppDatabase
 import com.example.ideal_umbrella.MealTypeMenu.MealType
 import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionListener
+import com.example.ideal_umbrella.Order.Order
+import com.example.ideal_umbrella.Order.OrderContent
 
 class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener {
     companion object {
@@ -86,12 +89,14 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) { //TODO: reset order button?, daily menu? images(are these important?)?
         R.id.action_order_summary -> {
             Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.orderFragment)
             true
         }
         R.id.action_order_place -> {
+            OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber))
+            MealContent.allMeals.clear()
             1-1 //TODO: add to orders, show orders view
             true
         }

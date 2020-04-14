@@ -22,12 +22,7 @@ class MealTypeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_meal_type_list, container, false)
 
-        if(MealContent.showingMeals.isEmpty() || MealContent.showingMeals.filter { it.numberOfOrders > 0 }.isEmpty()) {
-            MainActivity.orderSummary?.setVisible(false)
-        }
-        else {
-            MainActivity.orderSummary?.setVisible(true)
-        }
+        MainActivity.orderSummary?.isVisible = !(MealContent.showingMeals.isEmpty() || MealContent.showingMeals.filter { it.numberOfOrders > 0 }.isEmpty())
 
         if (view is RecyclerView) {
             with(view) {
@@ -43,7 +38,7 @@ class MealTypeFragment : Fragment() {
         if (context is OnMealTypesFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
+            throw RuntimeException("$context must implement OnListFragmentInteractionListener")
         }
     }
 
