@@ -4,8 +4,11 @@ import android.app.Activity
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.room.Room
 import com.example.ideal_umbrella.ChooseMeal.Meal
@@ -18,6 +21,7 @@ import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionLis
 class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener {
     companion object {
         lateinit var db: AppDatabase
+        var orderSummary: MenuItem? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +31,8 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             this,
             AppDatabase::class.java, "waiter"
         ).build()
+
+        setSupportActionBar(findViewById(R.id.toolbar))
     }
 
     override fun onDestroy() {
@@ -69,6 +75,24 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             val bundle = Bundle();
             bundle.putInt("meal-type",  item.value)
             Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.chooseMealFragment, bundle)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.order_summary_button, menu)
+        orderSummary = menu?.getItem(0)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    // actions on click menu items
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_favorite -> {
+            // User chose the "Print" item
+            Toast.makeText(this,"Print action",Toast.LENGTH_LONG).show()
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
         }
     }
 }

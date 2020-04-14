@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.ideal_umbrella.MainActivity
 import com.example.ideal_umbrella.R
 
 class MealTypeFragment : Fragment() {
@@ -19,6 +20,8 @@ class MealTypeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_meal_type_list, container, false)
+
+        MainActivity.orderSummary?.setVisible(true)
 
         if (view is RecyclerView) {
             with(view) {

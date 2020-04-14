@@ -7,4 +7,5 @@
     <string name="update_meals">Update meals</string>
     <string name="plus_order_button">+</string>
     <string name="minus_order_button">-</string>
+    <string name="order_summary">Order summary</string>
 </resources>
