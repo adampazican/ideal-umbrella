@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         numberView: TextView
     ) {
         if(item != null) {
-            item.numberOfOrders++;
+            item.numberOfOrders++
             numberView.setTextColor(Color.parseColor("#00ff00"))
             adapter.notifyDataSetChanged()
         }
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
     ) {
         if(item != null) {
             if(item.numberOfOrders > 0) {
-                item.numberOfOrders--;
+                item.numberOfOrders--
                 adapter.notifyDataSetChanged()
 
                 if (item.numberOfOrders == 0)
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
 
     override fun onListFragmentInteraction(item: MealType?) {
         if (item != null) {
-            val bundle = Bundle();
+            val bundle = Bundle()
             bundle.putInt("meal-type",  item.value)
             Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.chooseMealFragment, bundle)
         }
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         R.id.action_order_place -> {
             OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price!! * meal.numberOfOrders }))
             MealContent.allMeals.clear()
-            1-1 //TODO: add to orders, show orders view
+            1-1 //TODO: add to orders, show orders view, send order to the server
             true
         }
         else -> {

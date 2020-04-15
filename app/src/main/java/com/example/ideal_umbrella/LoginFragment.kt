@@ -14,21 +14,17 @@ import androidx.navigation.Navigation
 
 class LoginFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
     private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.login_fragment, container, false);
+        val view = inflater.inflate(R.layout.login_fragment, container, false)
         view.findViewById<Button>(R.id.button).setOnClickListener {
-            attemptLogin(view);
+            attemptLogin(view)
         }
-        return view;
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -38,8 +34,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun attemptLogin(view: View) {
-        val email = view.findViewById<EditText>(R.id.login_email_input)?.text;
-        val password = view.findViewById<EditText>(R.id.login_password_input)?.text;
+        val email = view.findViewById<EditText>(R.id.login_email_input)?.text
+        val password = view.findViewById<EditText>(R.id.login_password_input)?.text
 
         //todo: send to server
         Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.startScreenFragment)

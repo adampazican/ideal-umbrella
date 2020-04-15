@@ -1,6 +1,5 @@
 package com.example.ideal_umbrella.ChooseMeal
 
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 

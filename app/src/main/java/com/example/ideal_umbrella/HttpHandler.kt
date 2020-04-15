@@ -10,17 +10,17 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 object HttpHandler {
-    const val PREFIX = "https://926321cb.ngrok.io"
-    const val UPDATE_DB = PREFIX + "/update-db"
+    private const val PREFIX = "https://926321cb.ngrok.io"
+    private const val UPDATE_DB = PREFIX + "/update-db"
 
     fun getAllMeals(callback: (mealArray: ArrayList<Meal>?, success: Boolean) -> Unit) {
         Thread {
             try {
-                val url = URL(UPDATE_DB);
+                val url = URL(UPDATE_DB)
                 val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
                 val inputStream: InputStream = conn.inputStream
                 val reader = InputStreamReader(inputStream)
-                val result = JSONArray(reader.readText());
+                val result = JSONArray(reader.readText())
 
                 val mealArray = ArrayList<Meal>()
                 for (i in 0 until result.length()) {
@@ -36,6 +36,6 @@ object HttpHandler {
                 callback(null, false)
             }
 
-        }.start();
+        }.start()
     }
 }

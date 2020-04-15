@@ -31,9 +31,10 @@ class MyMealTypeRecyclerViewAdapter(
         return ViewHolder(view)
     }
 
+    @ExperimentalStdlibApi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mContentView.text = item.name.toLowerCase(Locale.ROOT).capitalize().replace("_", " ")
+        holder.mContentView.text = item.name.toLowerCase(Locale.ROOT).capitalize(Locale.getDefault()).replace("_", " ")
 
         with(holder.mView) {
             tag = item
@@ -44,7 +45,6 @@ class MyMealTypeRecyclerViewAdapter(
     override fun getItemCount(): Int = mValues.size
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView = mView.item_number
         val mContentView: TextView = mView.content
     }
 }

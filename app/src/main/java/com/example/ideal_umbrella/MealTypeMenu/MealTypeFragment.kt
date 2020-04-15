@@ -22,7 +22,7 @@ class MealTypeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_meal_type_list, container, false)
 
-        MainActivity.orderSummary?.isVisible = !(MealContent.showingMeals.isEmpty() || MealContent.showingMeals.filter { it.numberOfOrders > 0 }.isEmpty()) //TODO: hide this on destroy view probably so its not patchy everywhere
+        MainActivity.orderSummary?.isVisible = !(MealContent.showingMeals.isEmpty() || MealContent.showingMeals.none { it.numberOfOrders > 0 })
 
         if (view is RecyclerView) {
             with(view) {
@@ -31,6 +31,11 @@ class MealTypeFragment : Fragment() {
             }
         }
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        MainActivity.orderSummary?.isVisible = false
     }
 
     override fun onAttach(context: Context) {

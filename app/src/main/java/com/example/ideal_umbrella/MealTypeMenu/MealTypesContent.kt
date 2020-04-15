@@ -5,7 +5,6 @@ import java.util.*
 
 object MealTypesContent {
     val ITEMS: MutableList<MealType> = ArrayList()
-    val order: MutableList<Meal> = ArrayList()
 
     init {
         for (i in MealType.values().indices) {

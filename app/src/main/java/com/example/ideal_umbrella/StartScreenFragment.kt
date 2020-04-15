@@ -1,40 +1,26 @@
 package com.example.ideal_umbrella
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import android.app.Activity
-import android.app.AlertDialog
-import android.app.Dialog
-import android.content.DialogInterface
 import android.widget.Button
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.Navigation
-import androidx.room.Room
-import com.example.ideal_umbrella.MealTypeMenu.MealType
-import com.example.ideal_umbrella.Database.AppDatabase
+import androidx.fragment.app.Fragment
 import com.example.ideal_umbrella.Database.Meal
-import kotlinx.android.synthetic.main.activity_main.*
 
 class StartScreenFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_start_screen, container, false);
-        val startOrderButton = view?.findViewById(R.id.start_order_button) as Button;
-        val updateMealsButton = view?.findViewById(R.id.update_meals_button) as Button
+        val view = inflater.inflate(R.layout.fragment_start_screen, container, false)
+        val startOrderButton = view?.findViewById(R.id.start_order_button) as Button
+        val updateMealsButton = view.findViewById(R.id.update_meals_button) as Button
 
         startOrderButton.setOnClickListener {
             //TODO: show popup which asks table number
-            if (fragmentManager != null)
-                TablesDialog().show(fragmentManager as FragmentManager, "example")
+            TablesDialog().show(parentFragmentManager, "example")
         }
 
         val db = MainActivity.db
@@ -59,6 +45,6 @@ class StartScreenFragment : Fragment() {
             }
         }
 
-        return view;
+        return view
     }
 }

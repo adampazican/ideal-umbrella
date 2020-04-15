@@ -23,5 +23,5 @@ interface MealDao {
     fun delete(meal: Meal)
 
     @Query("DELETE FROM meal")
-    fun deleteAll();
+    fun deleteAll()
 }
