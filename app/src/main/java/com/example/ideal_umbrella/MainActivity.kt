@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.room.Room
@@ -22,13 +21,13 @@ import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionLis
 import com.example.ideal_umbrella.Order.Order
 import com.example.ideal_umbrella.Order.OrderContent
 import com.example.ideal_umbrella.Order.OrderFragmentDirections
-import com.example.ideal_umbrella.Order.OrdersFragment
 
 class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener {
     companion object {
         lateinit var db: AppDatabase
         var orderSummary: MenuItem? = null
         var orderPlace: MenuItem? = null
+        var orderReset: MenuItem? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,24 +86,34 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.order_reset, menu)
         menuInflater.inflate(R.menu.order_summary_button, menu)
         menuInflater.inflate(R.menu.order_place, menu)
+
         orderSummary = menu?.getItem(0)
         orderPlace = menu?.getItem(1)
+        orderReset = menu?.getItem(2)
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) { //TODO: reset order button?, daily menu? images(are these important?)?
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) { //TODO: daily menu? images(are these important?)?
         R.id.action_order_summary -> {
             Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.orderFragment)
             true
         }
         R.id.action_order_place -> {
-            OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price!! * meal.numberOfOrders }))
+            OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price * meal.numberOfOrders }))
             MealContent.allMeals.clear()
             1-1 //TODO: send order to the server
             findNavController(R.id.nav_host_fragment).navigate(OrderFragmentDirections.actionOrderFragmentToOrdersFragment())
-
+            true
+        }
+        R.id.action_order_reset -> {
+            MealContent.allMeals.map {
+                it.numberOfOrders = 0
+            }
+            orderSummary?.isVisible = false
+            orderReset?.isVisible= false
             true
         }
         else -> {
