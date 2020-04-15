@@ -8,7 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.room.Room
 import com.example.ideal_umbrella.ChooseMeal.Meal
 import com.example.ideal_umbrella.ChooseMeal.MealContent
@@ -19,6 +21,8 @@ import com.example.ideal_umbrella.MealTypeMenu.MealType
 import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionListener
 import com.example.ideal_umbrella.Order.Order
 import com.example.ideal_umbrella.Order.OrderContent
+import com.example.ideal_umbrella.Order.OrderFragmentDirections
+import com.example.ideal_umbrella.Order.OrdersFragment
 
 class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener {
     companion object {
@@ -98,8 +102,9 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         R.id.action_order_place -> {
             OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price!! * meal.numberOfOrders }))
             MealContent.allMeals.clear()
-            1-1 //TODO: , show orders view, send order to the server, change history to go to the start screen
-            Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.ordersFragment)
+            1-1 //TODO: send order to the server
+            findNavController(R.id.nav_host_fragment).navigate(OrderFragmentDirections.actionOrderFragmentToOrdersFragment())
+
             true
         }
         else -> {
