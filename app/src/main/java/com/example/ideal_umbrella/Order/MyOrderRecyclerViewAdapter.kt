@@ -26,7 +26,7 @@ class MyOrderRecyclerViewAdapter(
         val item = mValues[position]
         holder.mIdView.text = item.mealName
         holder.mContentView.text = context.getString(R.string.number_of_orders, item.numberOfOrders)
-        holder.mPriceView.text = context.getString(R.string.price, item.price?.times(item.numberOfOrders))
+        holder.mPriceView.text = context.getString(R.string.price, item.price * item.numberOfOrders)
     }
 
     override fun getItemCount(): Int = mValues.size

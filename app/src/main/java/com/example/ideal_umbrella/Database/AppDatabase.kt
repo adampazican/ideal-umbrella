@@ -8,4 +8,8 @@ import androidx.room.TypeConverters
 @TypeConverters(MealTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun mealDao(): MealDao
+
+    companion object {
+        const val DB_NAME: String = "waiter"
+    }
 }

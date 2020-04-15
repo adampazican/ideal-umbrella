@@ -29,10 +29,11 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main) //TODO: make new fragment with list of types of meal (dynamically added from enum), table number and big order button
+        setContentView(R.layout.activity_main)
+
         db = Room.databaseBuilder(
             this,
-            AppDatabase::class.java, "waiter"
+            AppDatabase::class.java, AppDatabase.DB_NAME
         ).build()
 
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -97,7 +98,8 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         R.id.action_order_place -> {
             OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price!! * meal.numberOfOrders }))
             MealContent.allMeals.clear()
-            1-1 //TODO: add to orders, show orders view, send order to the server
+            1-1 //TODO: , show orders view, send order to the server, change history to go to the start screen
+            Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.ordersFragment)
             true
         }
         else -> {

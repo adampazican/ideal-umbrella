@@ -14,8 +14,6 @@ import androidx.navigation.Navigation
 
 class LoginFragment : Fragment() {
 
-    private lateinit var viewModel: LoginViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,12 +23,6 @@ class LoginFragment : Fragment() {
             attemptLogin(view)
         }
         return view
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     private fun attemptLogin(view: View) {

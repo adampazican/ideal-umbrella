@@ -1,5 +1,6 @@
 package com.example.ideal_umbrella
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.ideal_umbrella.Database.Meal
 
 class StartScreenFragment : Fragment() {
@@ -16,11 +18,15 @@ class StartScreenFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_start_screen, container, false)
         val startOrderButton = view?.findViewById(R.id.start_order_button) as Button
+        val orderListButton = view.findViewById(R.id.order_list_button) as Button
         val updateMealsButton = view.findViewById(R.id.update_meals_button) as Button
 
         startOrderButton.setOnClickListener {
-            //TODO: show popup which asks table number
             TablesDialog().show(parentFragmentManager, "example")
+        }
+
+        orderListButton.setOnClickListener {
+            Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.ordersFragment)
         }
 
         val db = MainActivity.db

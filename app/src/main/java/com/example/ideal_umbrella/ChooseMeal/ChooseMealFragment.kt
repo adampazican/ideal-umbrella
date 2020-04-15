@@ -40,7 +40,7 @@ class ChooseMealFragment : Fragment() {
                             MealContent.allMeals.add(Meal(it.id, it.mealName, it.mealType, it.price))
                         }
 
-                        MealContent.showingMeals.addAll(MealContent.allMeals.filter { it.mealType?.value == mealType })
+                        MealContent.showingMeals.addAll(MealContent.getAllMealsByType(mealType))
 
                         activity?.runOnUiThread {
                             (adapter as MyChooseMealRecyclerViewAdapter).notifyDataSetChanged()
@@ -49,7 +49,7 @@ class ChooseMealFragment : Fragment() {
                 }
                 else {
                     MealContent.showingMeals.clear()
-                    MealContent.showingMeals.addAll(MealContent.allMeals.filter { it.mealType?.value == mealType })
+                    MealContent.showingMeals.addAll(MealContent.getAllMealsByType(mealType))
                 }
 
                 adapter = MyChooseMealRecyclerViewAdapter(MealContent.showingMeals, listener)

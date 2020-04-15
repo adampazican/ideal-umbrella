@@ -10,8 +10,8 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 object HttpHandler {
-    private const val PREFIX = "https://926321cb.ngrok.io"
-    private const val UPDATE_DB = PREFIX + "/update-db"
+    private const val PREFIX = "https://3918c97d.ngrok.io"
+    private const val UPDATE_DB = "$PREFIX/update-db"
 
     fun getAllMeals(callback: (mealArray: ArrayList<Meal>?, success: Boolean) -> Unit) {
         Thread {

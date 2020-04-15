@@ -23,7 +23,7 @@ class OrderFragment : Fragment() {
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = MyOrderRecyclerViewAdapter(MealContent.allMeals.filter { it.numberOfOrders > 0 }, context)
+                adapter = MyOrderRecyclerViewAdapter(MealContent.getOrderedMeals(), context)
             }
         }
         return view
