@@ -40,6 +40,7 @@ class ChooseMealFragment : Fragment() {
                             MealContent.allMeals.add(Meal(it.id, it.mealName, it.mealType, it.price))
                         }
 
+                        MealContent.showingMeals.clear()
                         MealContent.showingMeals.addAll(MealContent.getAllMealsByType(mealType))
 
                         activity?.runOnUiThread {

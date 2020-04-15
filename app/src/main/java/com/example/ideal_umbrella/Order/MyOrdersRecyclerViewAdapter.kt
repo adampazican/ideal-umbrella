@@ -1,5 +1,6 @@
 package com.example.ideal_umbrella.Order
 
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,23 +9,14 @@ import android.widget.TextView
 import com.example.ideal_umbrella.ChooseMeal.Meal
 import com.example.ideal_umbrella.R
 
-import com.example.ideal_umbrella.Order.OrdersFragment.OnListFragmentInteractionListener
+import com.example.ideal_umbrella.Order.OrdersFragment.OnOrdersFragmentInteractionListener
 
 import kotlinx.android.synthetic.main.fragment_orders.view.*
 
 class MyOrdersRecyclerViewAdapter(
     private val mValues: List<Order>,
-    private val mListener: OnListFragmentInteractionListener?
+    private val mListener: OnOrdersFragmentInteractionListener?
 ) : RecyclerView.Adapter<MyOrdersRecyclerViewAdapter.ViewHolder>() {
-
-    private val mOnClickListener: View.OnClickListener
-
-    init {
-        mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as Order
-            mListener?.onListFragmentInteraction(item)
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -38,11 +30,16 @@ class MyOrdersRecyclerViewAdapter(
         holder.mContentView.text = item.meals.fold("") { acc: String, meal: Meal ->
             "$acc${meal.mealName}*${meal.numberOfOrders}\n"
         }
-        holder.mPriceView.text = "Price \n${item.sumTotal} €"
+        holder.mPriceView.text = "Price \n${item.sumTotal} €" //TODO:
 
-        with(holder.mView) {
-            tag = item
-            setOnClickListener(mOnClickListener)
+        if(item.finished)
+            holder.mView.setBackgroundColor(Color.parseColor("#00ff00"))
+        else
+            holder.mView.setBackgroundColor(Color.parseColor("#ffffff"))
+
+
+        holder.mView.setOnClickListener {v ->
+            mListener?.onOrdersFragmentInteraction(item, this)
         }
     }
 

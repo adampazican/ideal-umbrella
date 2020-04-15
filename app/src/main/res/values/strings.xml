@@ -14,4 +14,5 @@
     <string name="price">%1$d €</string>
     <string name="order_list_button">Orders</string>
     <string name="delete_order">Delete order</string>
+    <string name="order">order_place_button_title</string>
 </resources>

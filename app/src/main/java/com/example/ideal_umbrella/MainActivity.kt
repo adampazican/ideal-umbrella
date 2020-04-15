@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -18,11 +20,9 @@ import com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionList
 import com.example.ideal_umbrella.Database.AppDatabase
 import com.example.ideal_umbrella.MealTypeMenu.MealType
 import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionListener
-import com.example.ideal_umbrella.Order.Order
-import com.example.ideal_umbrella.Order.OrderContent
-import com.example.ideal_umbrella.Order.OrderFragmentDirections
+import com.example.ideal_umbrella.Order.*
 
-class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener, OrdersFragment.OnOrdersFragmentInteractionListener {
     companion object {
         lateinit var db: AppDatabase
         var orderSummary: MenuItem? = null
@@ -90,9 +90,9 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         menuInflater.inflate(R.menu.order_summary_button, menu)
         menuInflater.inflate(R.menu.order_place, menu)
 
-        orderSummary = menu?.getItem(0)
-        orderPlace = menu?.getItem(1)
-        orderReset = menu?.getItem(2)
+        orderReset = menu?.getItem(0)
+        orderSummary = menu?.getItem(1)
+        orderPlace = menu?.getItem(2)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -112,12 +112,21 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             MealContent.allMeals.map {
                 it.numberOfOrders = 0
             }
+
+
             orderSummary?.isVisible = false
             orderReset?.isVisible= false
             true
         }
         else -> {
             super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onOrdersFragmentInteraction(order: Order?, adapter: MyOrdersRecyclerViewAdapter) {
+        if(order != null) {
+            order.finished = !order.finished
+            adapter.notifyDataSetChanged()
         }
     }
 }
