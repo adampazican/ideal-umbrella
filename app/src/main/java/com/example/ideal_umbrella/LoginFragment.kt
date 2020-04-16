@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 
@@ -28,7 +29,15 @@ class LoginFragment : Fragment() {
         val email = view.findViewById<EditText>(R.id.login_email_input)?.text
         val password = view.findViewById<EditText>(R.id.login_password_input)?.text
 
+        HttpHandler.verifyUser(email.toString(), password.toString()){success ->
+            if(success)
+                Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.startScreenFragment)
+            else {
+                activity?.runOnUiThread {
+                    Toast.makeText(context,"Invalid email or password", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
         //todo: send to server
-        Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.startScreenFragment)
     }
 }
