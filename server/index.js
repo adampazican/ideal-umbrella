@@ -53,7 +53,7 @@ app.post('/store-order', (req, res) => {
     res.send(obj)
 })
 
-app.get('getAllOrders', (req, res) => {
+app.get('/get-all-orders', (req, res) => {
     res.send(orders)
 })
 

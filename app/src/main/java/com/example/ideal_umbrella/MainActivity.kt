@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.ideal_umbrella.ChooseMeal.Meal
 import com.example.ideal_umbrella.ChooseMeal.MealContent
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         var orderSummary: MenuItem? = null
         var orderPlace: MenuItem? = null
         var orderReset: MenuItem? = null
+        var orderRefresh: MenuItem? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,10 +92,12 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         menuInflater.inflate(R.menu.order_reset, menu)
         menuInflater.inflate(R.menu.order_summary_button, menu)
         menuInflater.inflate(R.menu.order_place, menu)
+        menuInflater.inflate(R.menu.order_refresh, menu)
 
         orderReset = menu?.getItem(0)
         orderSummary = menu?.getItem(1)
         orderPlace = menu?.getItem(2)
+        orderRefresh = menu?.getItem(3)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -103,7 +107,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             true
         }
         R.id.action_order_place -> {
-            val order = Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price * meal.numberOfOrders })
+            val order = Order(MealContent.allMeals.filter { it.numberOfOrders > 0 } as ArrayList<Meal>, MealContent.tableNumber, MealContent.allMeals.fold(0){ acc: Int, meal: Meal -> acc + meal.price * meal.numberOfOrders })
             OrderContent.orders.add(order)
             MealContent.allMeals.clear()
             HttpHandler.storeOrder(order) {success ->
@@ -123,6 +127,18 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
 
             orderSummary?.isVisible = false
             orderReset?.isVisible= false
+            true
+        }
+        R.id.action_order_refresh -> {
+            HttpHandler.getAllOrders { ordersArray, _ ->
+                OrderContent.orders.clear()
+                if (ordersArray != null) {
+                    OrderContent.orders.addAll(ordersArray)
+                    this.runOnUiThread {
+                        OrderContent.view?.adapter?.notifyDataSetChanged()
+                    }
+                }
+            }
             true
         }
         else -> {

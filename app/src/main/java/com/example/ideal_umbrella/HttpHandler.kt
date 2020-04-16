@@ -1,6 +1,5 @@
 package com.example.ideal_umbrella
 
-import android.util.JsonWriter
 import com.example.ideal_umbrella.ChooseMeal.Meal
 import com.example.ideal_umbrella.MealTypeMenu.MealType
 import com.example.ideal_umbrella.Order.Order
@@ -18,6 +17,7 @@ object HttpHandler {
     private const val UPDATE_DB = "$PREFIX/update-db"
     private const val VERIFY_USER = "$PREFIX/verify-user"
     private const val STORE_ORDER = "$PREFIX/store-order"
+    private const val GET_ALL_ORDERS = "$PREFIX/get-all-orders"
 
     fun getAllMeals(callback: (mealArray: ArrayList<Meal>?, success: Boolean) -> Unit) {
         Thread {
@@ -96,6 +96,7 @@ object HttpHandler {
                     meal.put("mealName", it.mealName)
                     meal.put("price", it.price)
                     meal.put("numberOfOrders", it.numberOfOrders)
+                    meal.put("mealType", it.mealType.value)
                     meals.put(meal)
                 }
                 jOrder.put("meals", meals)
@@ -114,6 +115,40 @@ object HttpHandler {
             }
             catch (e: Exception) {
                 callback(false)
+            }
+
+        }.start()
+    }
+
+    fun getAllOrders(callback: (ordersArray: ArrayList<Order>?, success: Boolean) -> Unit) {
+        Thread {
+            try {
+                val url = URL(GET_ALL_ORDERS)
+                val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
+                val inputStream: InputStream = conn.inputStream
+                val reader = InputStreamReader(inputStream)
+
+                val result = JSONArray(reader.readText())
+
+                val orderArray = ArrayList<Order>()
+                for (i in 0 until result.length()) {
+                    val item = result.getJSONObject(i)
+                    val order = Order(tableNumber = item["tableNumber"] as Int, sumTotal = item["sumTotal"] as Int, finished = item["finished"] as Boolean)
+
+                    val meals = item.getJSONArray("meals")
+                    for (j in 0 until meals.length()) {
+                        val meal = meals.getJSONObject(j)
+                        order.meals.add(Meal(meal["id"] as Int, meal["mealName"] as String, MealType.fromInt(meal["mealType"] as Int), meal["price"] as Int, meal["numberOfOrders"] as Int))
+                    }
+
+                    orderArray.add(order)
+                }
+
+                reader.close()
+                callback(orderArray, true)
+            }
+            catch (e: Exception) {
+                callback(null, false)
             }
 
         }.start()
