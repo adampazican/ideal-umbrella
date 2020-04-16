@@ -38,6 +38,5 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-        //todo: send to server
     }
 }

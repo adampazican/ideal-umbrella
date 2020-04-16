@@ -16,10 +16,6 @@ app.get('/daily-menu', (req, res) => {
     res.send([1, 2, 3])
 })
 
-app.get('/version', (req, res) => {
-    res.send({version})
-})
-
 app.get('/update-db', (req, res) => {
     res.send([
         {
@@ -44,9 +40,26 @@ app.post('/verify-user', (req, res) => {
     res.send(obj)
 })
 
+const orders = []
 
-app.get('/:id', (req, res) => {
-    res.sendFile(path.join(__dirname, '0.jpg'))
+app.post('/store-order', (req, res) => {
+    const obj = { success: false }
+
+    if(Object.keys(req.body).length !== 0) {
+        orders.push(req.body)
+        obj.success = true
+    }
+
+    res.send(obj)
 })
 
-app.listen(4000, () => console.log('listening'))
+app.get('getAllOrders', (req, res) => {
+    res.send(orders)
+})
+
+app.get('/debug', (req, res) => {
+    console.log(orders)
+    res.send(orders)
+})
+
+app.listen(process.env.PORT || 4000, () => console.log('listening'))

@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.room.Room
@@ -96,15 +97,22 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) { //TODO: daily menu? images(are these important?)?
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) { //TODO: daily menu?
         R.id.action_order_summary -> {
             Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.orderFragment)
             true
         }
         R.id.action_order_place -> {
-            OrderContent.orders.add(Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price * meal.numberOfOrders }))
+            val order = Order(MealContent.allMeals.filter { it.numberOfOrders > 0 }, MealContent.tableNumber, MealContent.allMeals.fold(0){acc: Int, meal: Meal -> acc + meal.price * meal.numberOfOrders })
+            OrderContent.orders.add(order)
             MealContent.allMeals.clear()
-            1-1 //TODO: send order to the server
+            HttpHandler.storeOrder(order) {success ->
+                if(!success) {
+                    this.runOnUiThread {
+                        Toast.makeText(applicationContext, "Couldn't send order to the server", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
             findNavController(R.id.nav_host_fragment).navigate(OrderFragmentDirections.actionOrderFragmentToOrdersFragment())
             true
         }
@@ -112,7 +120,6 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             MealContent.allMeals.map {
                 it.numberOfOrders = 0
             }
-
 
             orderSummary?.isVisible = false
             orderReset?.isVisible= false
