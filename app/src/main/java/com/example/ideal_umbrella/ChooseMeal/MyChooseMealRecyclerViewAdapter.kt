@@ -1,5 +1,6 @@
 package com.example.ideal_umbrella.ChooseMeal
 
+import android.content.Context
 import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,7 +15,8 @@ import kotlinx.android.synthetic.main.fragment_choose_meal.view.*
 
 class MyChooseMealRecyclerViewAdapter(
     private val mValues: List<Meal>,
-    private val mListener: OnChooseMealFragmentInteractionListener?
+    private val mListener: OnChooseMealFragmentInteractionListener?,
+    private val context: Context
 ) : RecyclerView.Adapter<MyChooseMealRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +32,9 @@ class MyChooseMealRecyclerViewAdapter(
         holder.mOrderView.text = item.numberOfOrders.toString()
 
         if(item.numberOfOrders > 0)
-            holder.mOrderView.setTextColor(Color.parseColor("#00ff00"))
+            holder.mOrderView.setTextColor(context.getColor(R.color.colorDone))
+        else
+            holder.mOrderView.setTextColor(context.getColor(R.color.colorBlack))
 
         holder.mPlusButton.setOnClickListener {v ->
             mListener?.onListFragmentInteractionPlus(v as Button, item, this, holder.mOrderView)

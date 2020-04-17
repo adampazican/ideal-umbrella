@@ -15,4 +15,6 @@
     <string name="order_list_button">Orders</string>
     <string name="delete_order">Delete order</string>
     <string name="order">order_place_button_title</string>
+    <string name="order_table_number">Table \n%1$d</string>
+    <string name="order_price">Price \n%1$d €</string>
 </resources>

@@ -26,7 +26,7 @@ class OrdersFragment : Fragment() {
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = MyOrdersRecyclerViewAdapter(OrderContent.orders, listener)
+                adapter = MyOrdersRecyclerViewAdapter(OrderContent.orders, listener, context)
                 OrderContent.view = this
             }
         }

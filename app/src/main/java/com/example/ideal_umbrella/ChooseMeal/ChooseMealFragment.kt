@@ -53,7 +53,7 @@ class ChooseMealFragment : Fragment() {
                     MealContent.showingMeals.addAll(MealContent.getAllMealsByType(mealType))
                 }
 
-                adapter = MyChooseMealRecyclerViewAdapter(MealContent.showingMeals, listener)
+                adapter = MyChooseMealRecyclerViewAdapter(MealContent.showingMeals, listener, context)
             }
         }
         return view

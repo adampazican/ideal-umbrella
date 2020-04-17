@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
     ) {
         if(item != null) {
             item.numberOfOrders++
-            numberView.setTextColor(Color.parseColor("#00ff00"))
+            numberView.setTextColor(applicationContext.getColor(R.color.colorDone))
             adapter.notifyDataSetChanged()
         }
     }
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
                 adapter.notifyDataSetChanged()
 
                 if (item.numberOfOrders == 0)
-                    numberView.setTextColor(Color.parseColor("#000000"))
+                    numberView.setTextColor(applicationContext.getColor(R.color.colorBackground))
             }
         }
     }
