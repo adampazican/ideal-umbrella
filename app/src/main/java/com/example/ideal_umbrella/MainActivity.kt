@@ -2,18 +2,15 @@ package com.example.ideal_umbrella
 
 import android.app.Activity
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.ideal_umbrella.ChooseMeal.Meal
 import com.example.ideal_umbrella.ChooseMeal.MealContent
@@ -24,7 +21,7 @@ import com.example.ideal_umbrella.MealTypeMenu.MealType
 import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionListener
 import com.example.ideal_umbrella.Order.*
 
-class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener, OrdersFragment.OnOrdersFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener, OnOrdersFragmentInteractionListener {
     companion object {
         lateinit var db: AppDatabase
         var orderSummary: MenuItem? = null
@@ -80,7 +77,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         }
     }
 
-    override fun onListFragmentInteraction(item: MealType?) {
+    override fun onMealTypesFragmentInteraction(item: MealType?) {
         if (item != null) {
             val bundle = Bundle()
             bundle.putInt("meal-type",  item.value)
@@ -101,7 +98,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) { //TODO: daily menu?
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_order_summary -> {
             Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.orderFragment)
             true
@@ -109,17 +106,16 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         R.id.action_order_place -> {
             val order = Order(MealContent.allMeals.filter { it.numberOfOrders > 0 } as ArrayList<Meal>, MealContent.tableNumber, MealContent.allMeals.fold(0){ acc: Int, meal: Meal -> acc + meal.price * meal.numberOfOrders }, -1)
             MealContent.allMeals.clear()
+            OrderContent.orders.add(order)
 
             HttpHandler.storeOrder(order) {success: Boolean, id: Int ->
                 if(!success) {
                     this.runOnUiThread {
                         Toast.makeText(applicationContext, "Couldn't send order to the server", Toast.LENGTH_SHORT).show()
-                        OrderContent.orders.add(order)
                     }
                 }
                 else{
                     order.id = id
-                    OrderContent.orders.add(order)
                 }
             }
 
@@ -156,6 +152,13 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         if(order != null) {
             order.finished = !order.finished
             adapter.notifyDataSetChanged()
+            HttpHandler.makeOrderFinished(order.id, order.finished) {success ->
+                if(!success) {
+                    this.runOnUiThread {
+                        Toast.makeText(applicationContext,"Couldn't connect to the server", Toast.LENGTH_SHORT).show() //TODO: make all string constants into resources
+                    }
+                }
+            }
         }
     }
 }

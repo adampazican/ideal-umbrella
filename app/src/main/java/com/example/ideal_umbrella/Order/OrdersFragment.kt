@@ -26,7 +26,7 @@ class OrdersFragment : Fragment() {
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = MyOrdersRecyclerViewAdapter(OrderContent.orders, listener) //TODO: refresh objednavok zo servera, poslat serveru vybavenie objednavky po kliknuti
+                adapter = MyOrdersRecyclerViewAdapter(OrderContent.orders, listener)
                 OrderContent.view = this
             }
         }
@@ -50,9 +50,5 @@ class OrdersFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
-    }
-
-    interface OnOrdersFragmentInteractionListener {
-        fun onOrdersFragmentInteraction(order: Order?, adapter: MyOrdersRecyclerViewAdapter) //TODO: vynat + premenovat metody ostatnych listenerov
     }
 }

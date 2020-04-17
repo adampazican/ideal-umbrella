@@ -21,7 +21,7 @@ class MyMealTypeRecyclerViewAdapter(
     init {
         mOnClickListener = View.OnClickListener { v ->
             val item = v.tag as MealType
-            mListener?.onListFragmentInteraction(item)
+            mListener?.onMealTypesFragmentInteraction(item)
         }
     }
 

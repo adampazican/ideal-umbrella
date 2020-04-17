@@ -9,8 +9,6 @@ import android.widget.TextView
 import com.example.ideal_umbrella.ChooseMeal.Meal
 import com.example.ideal_umbrella.R
 
-import com.example.ideal_umbrella.Order.OrdersFragment.OnOrdersFragmentInteractionListener
-
 import kotlinx.android.synthetic.main.fragment_orders.view.*
 
 class MyOrdersRecyclerViewAdapter(

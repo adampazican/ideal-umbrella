@@ -72,6 +72,19 @@ app.get('/get-all-orders', (req, res) => {
     res.send(orders)
 })
 
+app.post('/order-finished', (req, res) => {
+    const obj = { success: false }
+
+    if(Object.keys(req.body).length !== 0) {
+        obj.success = true
+        console.log(orders[req.body.id])
+        console.log(req.body)
+        orders[req.body.id]["finished"] = req.body.finished
+    }
+
+    res.send(obj)
+})
+
 app.get('/debug', (req, res) => {
     console.log(orders)
     res.send(orders)

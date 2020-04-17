@@ -18,6 +18,7 @@ object HttpHandler {
     private const val VERIFY_USER = "$PREFIX/verify-user"
     private const val STORE_ORDER = "$PREFIX/store-order"
     private const val GET_ALL_ORDERS = "$PREFIX/get-all-orders"
+    private const val ORDER_FINISHED = "$PREFIX/order-finished"
 
     fun getAllMeals(callback: (mealArray: ArrayList<Meal>?, success: Boolean) -> Unit) {
         Thread {
@@ -52,7 +53,7 @@ object HttpHandler {
                 val url = URL(VERIFY_USER)
                 val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "POST"
-                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
 
                 val user = JSONObject()
                 user.put("email", email)
@@ -83,7 +84,7 @@ object HttpHandler {
                 val url = URL(STORE_ORDER)
                 val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "POST"
-                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
 
                 val jOrder = JSONObject()
                 jOrder.put("tableNumber", order.tableNumber)
@@ -149,6 +150,37 @@ object HttpHandler {
             }
             catch (e: Exception) {
                 callback(null, false)
+            }
+
+        }.start()
+    }
+
+    fun makeOrderFinished(orderId: Int, finished: Boolean, callback: (success: Boolean) -> Unit) {
+        Thread {
+            try {
+                val url = URL(ORDER_FINISHED)
+                val conn: HttpURLConnection = url.openConnection() as HttpURLConnection
+                conn.requestMethod = "POST"
+                conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
+
+                val jOrder = JSONObject()
+                jOrder.put("id", orderId)
+                jOrder.put("finished", finished)
+
+                val outputStream: OutputStream = conn.outputStream
+                outputStream.write(jOrder.toString().toByteArray())
+                outputStream.close()
+
+                val inputStream: InputStream = conn.inputStream
+                val reader = InputStreamReader(inputStream)
+
+                val result = JSONObject(reader.readText())
+
+                reader.close()
+                callback(result["success"] as Boolean)
+            }
+            catch (e: Exception) {
+                callback(false)
             }
 
         }.start()
