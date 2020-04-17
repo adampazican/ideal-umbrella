@@ -5,8 +5,9 @@ const bodyParser = require('body-parser')
 const app = express()
 app.use(bodyParser.json())
 
-const MEAL_SOUP = 0
-const MEAL_MAIN = 1
+const DAILY_MENU = 0
+const MEAL_SOUP = 1
+const MEAL_MAIN = 2
 
 const version = 0
 
@@ -30,6 +31,18 @@ app.get('/update-db', (req, res) => {
             "meal_type": MEAL_MAIN,
             "price": 20
         },
+        {
+            "id": 2,
+            "meal_name": "rezancova polievka",
+            "meal_type": DAILY_MENU,
+            "price": 2
+        },
+        {
+            "id": 3,
+            "meal_name": "bravcovy rezen",
+            "meal_type": DAILY_MENU,
+            "price": 40
+        },
     ])
 })
 
@@ -46,8 +59,10 @@ app.post('/store-order', (req, res) => {
     const obj = { success: false }
 
     if(Object.keys(req.body).length !== 0) {
-        orders.push(req.body)
         obj.success = true
+        obj.id = orders.length
+        req.body.id = orders.length
+        orders.push(req.body)
     }
 
     res.send(obj)

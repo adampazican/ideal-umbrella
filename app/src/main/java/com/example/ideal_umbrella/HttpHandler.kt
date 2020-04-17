@@ -77,7 +77,7 @@ object HttpHandler {
         }.start()
     }
 
-    fun storeOrder(order: Order, callback: (success: Boolean) -> Unit) {
+    fun storeOrder(order: Order, callback: (success: Boolean, id: Int) -> Unit) {
         Thread {
             try {
                 val url = URL(STORE_ORDER)
@@ -111,10 +111,10 @@ object HttpHandler {
                 val result = JSONObject(reader.readText())
 
                 reader.close()
-                callback(result["success"] as Boolean)
+                callback(result["success"] as Boolean, result["id"] as Int)
             }
             catch (e: Exception) {
-                callback(false)
+                callback(false, -1)
             }
 
         }.start()
@@ -133,7 +133,7 @@ object HttpHandler {
                 val orderArray = ArrayList<Order>()
                 for (i in 0 until result.length()) {
                     val item = result.getJSONObject(i)
-                    val order = Order(tableNumber = item["tableNumber"] as Int, sumTotal = item["sumTotal"] as Int, finished = item["finished"] as Boolean)
+                    val order = Order(tableNumber = item["tableNumber"] as Int, sumTotal = item["sumTotal"] as Int, finished = item["finished"] as Boolean, id = item["id"] as Int)
 
                     val meals = item.getJSONArray("meals")
                     for (j in 0 until meals.length()) {

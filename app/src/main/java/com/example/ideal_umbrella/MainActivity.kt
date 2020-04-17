@@ -107,16 +107,22 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             true
         }
         R.id.action_order_place -> {
-            val order = Order(MealContent.allMeals.filter { it.numberOfOrders > 0 } as ArrayList<Meal>, MealContent.tableNumber, MealContent.allMeals.fold(0){ acc: Int, meal: Meal -> acc + meal.price * meal.numberOfOrders })
-            OrderContent.orders.add(order)
+            val order = Order(MealContent.allMeals.filter { it.numberOfOrders > 0 } as ArrayList<Meal>, MealContent.tableNumber, MealContent.allMeals.fold(0){ acc: Int, meal: Meal -> acc + meal.price * meal.numberOfOrders }, -1)
             MealContent.allMeals.clear()
-            HttpHandler.storeOrder(order) {success ->
+
+            HttpHandler.storeOrder(order) {success: Boolean, id: Int ->
                 if(!success) {
                     this.runOnUiThread {
                         Toast.makeText(applicationContext, "Couldn't send order to the server", Toast.LENGTH_SHORT).show()
+                        OrderContent.orders.add(order)
                     }
                 }
+                else{
+                    order.id = id
+                    OrderContent.orders.add(order)
+                }
             }
+
             findNavController(R.id.nav_host_fragment).navigate(OrderFragmentDirections.actionOrderFragmentToOrdersFragment())
             true
         }
