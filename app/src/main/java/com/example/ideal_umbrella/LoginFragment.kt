@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
                 Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.startScreenFragment)
             else {
                 activity?.runOnUiThread {
-                    Toast.makeText(context,"Invalid email or password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context?.getString(R.string.login_invalid_credentials), Toast.LENGTH_SHORT).show()
                 }
             }
         }

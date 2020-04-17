@@ -40,12 +40,12 @@ class StartScreenFragment : Fragment() {
                     })
 
                     activity?.runOnUiThread {
-                        Toast.makeText(activity, "Db updated", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, context?.getString(R.string.update_meals_success), Toast.LENGTH_SHORT).show()
                     }
                 }
                 else {
                     activity?.runOnUiThread {
-                        Toast.makeText(activity, "Couldn't connect to the server! Check your internet connection", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, context?.getString(R.string.update_meals_error), Toast.LENGTH_SHORT).show()
                     }
                 }
             }

@@ -17,4 +17,13 @@
     <string name="order">order_place_button_title</string>
     <string name="order_table_number">Table \n%1$d</string>
     <string name="order_price">Price \n%1$d €</string>
+    <string name="table_dialog_title">Invalid table number</string>
+    <string name="table_dialog_positive_button">OK</string>
+    <string name="table_dialog_negative_button">Cancel</string>
+    <string name="table_dialog_invalid_message">Invalid table number</string>
+    <string name="place_order_error">Could not send order to the server</string>
+    <string name="finish_order_error">Could not connect to the server</string>
+    <string name="login_invalid_credentials">Invalid email or password</string>
+    <string name="update_meals_success">Db updated</string>
+    <string name="update_meals_error">Could not connect to the server! Check your internet connection</string>
 </resources>

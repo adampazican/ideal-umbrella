@@ -21,18 +21,18 @@ class TablesDialog : DialogFragment() {
         tableNumberInput.requestFocus()
 
         builder.setView(view)
-            .setTitle("Table number")
-            .setPositiveButton("OK") { _, _ ->
+            .setTitle(context?.getString(R.string.table_dialog_title))
+            .setPositiveButton(context?.getString(R.string.table_dialog_positive_button)) { _, _ ->
                 if (tableNumberInput.text == null || tableNumberInput.text.isEmpty()) {
                     dialog?.dismiss()
-                    Toast.makeText(context, "Invalid table number", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context?.getString(R.string.table_dialog_invalid_message), Toast.LENGTH_SHORT).show()
                 }
                 else {
                     MealContent.tableNumber = Integer.parseInt(tableNumberInput.text.toString())
                     Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.mealTypeFragment)
                 }
             }
-            .setNegativeButton("Cancel") { _, _ ->
+            .setNegativeButton(context?.getString(R.string.table_dialog_negative_button)) { _, _ ->
                 dialog?.dismiss()
             }
 

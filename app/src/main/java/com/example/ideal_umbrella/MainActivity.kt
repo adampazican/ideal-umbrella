@@ -1,7 +1,6 @@
 package com.example.ideal_umbrella
 
 import android.app.Activity
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -111,7 +110,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             HttpHandler.storeOrder(order) {success: Boolean, id: Int ->
                 if(!success) {
                     this.runOnUiThread {
-                        Toast.makeText(applicationContext, "Couldn't send order to the server", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, applicationContext.getString(R.string.place_order_error), Toast.LENGTH_SHORT).show()
                     }
                 }
                 else{
@@ -155,7 +154,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
             HttpHandler.makeOrderFinished(order.id, order.finished) {success ->
                 if(!success) {
                     this.runOnUiThread {
-                        Toast.makeText(applicationContext,"Couldn't connect to the server", Toast.LENGTH_SHORT).show() //TODO: make all string constants into resources
+                        Toast.makeText(applicationContext,applicationContext.getString(R.string.finish_order_error), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
