@@ -21,9 +21,12 @@ import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionLis
 import com.example.ideal_umbrella.Order.*
 
 /**
- *
+ * Hlavna aktivita aplikacie. Odpoveda na vsetky akcie aplikacie kedze je jedina aktivita a aplikacia je rozdelena na fragmenty medzi ktorymi sa naviguje pomocou navigatora
  */
 class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener, OnOrdersFragmentInteractionListener {
+    /**
+     * Deklaracia premennych (databaza, menu itemy)
+     */
     companion object {
         lateinit var db: AppDatabase
         var orderSummary: MenuItem? = null
@@ -32,6 +35,9 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         var orderRefresh: MenuItem? = null
     }
 
+    /**
+     * Akcia vyvolana pri vytvoreni aktivity, inicializuje databazu, vytvara action bar
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,11 +50,21 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         setSupportActionBar(findViewById(R.id.toolbar))
     }
 
+    /**
+     * Akcia vyvolana pri zniceni aktivity, zatvara databazu
+     */
     override fun onDestroy() {
         super.onDestroy()
         db.close()
     }
 
+    /**
+     * Akcia vyvolana stlacenim tlacidla plus pri konkretom jedle v ponuke, co zvacsi pocet objednanych kusov
+     * @param button predstavuje tlacidlo plus
+     * @param item predstavuje stlacene jedlo
+     * @param adapter predstavuje adapter listu jedal
+     * @param numberView predstavuje pocet objednanych jedal, ktory je zobrazeny pru kazdom jedle
+     */
     override fun onListFragmentInteractionPlus(
         button: Button,
         item: Meal?,
@@ -62,6 +78,13 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         }
     }
 
+    /**
+     * Akcia vyvolana stlacenim tlacidla minus pri konkretom jedle v ponuke, co zmensi pocet objednanych kusov
+     * @param button predstavuje tlacidlo minus
+     * @param item predstavuje stlacene jedlo
+     * @param adapter predstavuje adapter listu jedal
+     * @param numberView predstavuje pocet objednanych jedal, ktory je zobrazeny pru kazdom jedle
+     */
     override fun onListFragmentInteractionMinus(
         button: Button,
         item: Meal?,
@@ -79,6 +102,10 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         }
     }
 
+    /**
+     * Akcia vyvolana pri kliknuti na typ jedla pri objednavani, otvori list jedal tohoto typu
+     * @param item predstavuje stlaceny typ jedla
+     */
     override fun onMealTypesFragmentInteraction(item: MealType?) {
         if (item != null) {
             val bundle = Bundle()
@@ -87,6 +114,10 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         }
     }
 
+    /**
+     * Akcia vyvolana pri vytvoreni menu, inicializuje menu tlacidla
+     * @param menu predstavuje menu aplikacie
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.order_reset, menu)
         menuInflater.inflate(R.menu.order_summary_button, menu)
@@ -94,12 +125,16 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         menuInflater.inflate(R.menu.order_refresh, menu)
 
         orderReset = menu?.getItem(0)
-        orderSummary = menu?.getItem(1)
+        orderSummary = menu?.getItem(1) //TODO: there was a bug, where these would get lost on orientation change
         orderPlace = menu?.getItem(2)
         orderRefresh = menu?.getItem(3)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * Akcia vyvolana stlacenim tlacidla menu
+     * @param item predstavuje stlacene menu tlacidlo
+     */
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_order_summary -> {
             Navigation.findNavController(this as Activity, R.id.nav_host_fragment).navigate(R.id.orderFragment)
@@ -150,6 +185,11 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         }
     }
 
+    /**
+     * Akcia vyvolana stlacenim objednavky v liste objednavok
+     * @param order predstavuje stlacenu objednavku
+     * @param adapter adapter listu objednavok
+     */
     override fun onOrdersFragmentInteraction(order: Order?, adapter: MyOrdersRecyclerViewAdapter) {
         if(order != null) {
             order.finished = !order.finished
