@@ -20,6 +20,9 @@ import com.example.ideal_umbrella.MealTypeMenu.MealType
 import com.example.ideal_umbrella.MealTypeMenu.OnMealTypesFragmentInteractionListener
 import com.example.ideal_umbrella.Order.*
 
+/**
+ *
+ */
 class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListener, OnMealTypesFragmentInteractionListener, OnOrdersFragmentInteractionListener {
     companion object {
         lateinit var db: AppDatabase

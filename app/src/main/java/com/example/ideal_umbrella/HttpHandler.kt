@@ -12,6 +12,10 @@ import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 
+/**
+ * Trieda starajuca sa o komunikaciu so serverom
+ * @author Adam Pažičan
+ */
 object HttpHandler {
     private const val PREFIX = "https://idealumbrella.herokuapp.com"
     private const val UPDATE_DB = "$PREFIX/update-db"
@@ -20,6 +24,9 @@ object HttpHandler {
     private const val GET_ALL_ORDERS = "$PREFIX/get-all-orders"
     private const val ORDER_FINISHED = "$PREFIX/order-finished"
 
+    /**
+     * Na novom vlakne poziada server o vsetky jedla. Po spracovani dat do listu sa zavola [callback] s parametrom mealArray predstavujucim list jedal a success predstavujuci uspesnost poziadavky.
+     */
     fun getAllMeals(callback: (mealArray: ArrayList<Meal>?, success: Boolean) -> Unit) {
         Thread {
             try {
@@ -47,6 +54,12 @@ object HttpHandler {
         }.start()
     }
 
+    /**
+     * Na novom vlakne poziada server o validaciu pouzivatelskych udajov
+     * @param email predstavuje email pouzivatela
+     * @param password predstavuje heslo pouzivatela
+     * @param callback predstavuje callback, ktory sa zavola po ukonceni poziadavky
+     */
     fun verifyUser(email: String, password: String, callback: (success: Boolean) -> Unit) {
         Thread {
             try {
@@ -78,6 +91,11 @@ object HttpHandler {
         }.start()
     }
 
+    /**
+     * Na novom vlakne poziada server o evidenciu objednavky
+     * @param order predstavuje objednavku
+     * @param callback predstavuje callback, ktory sa zavola po ukonceni poziadavky
+     */
     fun storeOrder(order: Order, callback: (success: Boolean, id: Int) -> Unit) {
         Thread {
             try {
@@ -121,6 +139,10 @@ object HttpHandler {
         }.start()
     }
 
+    /**
+     * Na novom vlakne poziada server o vsetky evidovane objednavky
+     * @param callback predstavuje callback, ktory sa zavola po ukonceni poziadavky
+     */
     fun getAllOrders(callback: (ordersArray: ArrayList<Order>?, success: Boolean) -> Unit) {
         Thread {
             try {
@@ -155,6 +177,11 @@ object HttpHandler {
         }.start()
     }
 
+    /**
+     * Na novom vlakne poziada server o evidovanie obejdnavky ako ukoncenej (pripadne neukoncenej)
+     * @param orderId predstavuje id objednavky
+     * @param callback predstavuje callback, ktory sa zavola po ukonceni poziadavky
+     */
     fun makeOrderFinished(orderId: Int, finished: Boolean, callback: (success: Boolean) -> Unit) {
         Thread {
             try {
