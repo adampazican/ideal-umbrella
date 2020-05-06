@@ -124,11 +124,29 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
         menuInflater.inflate(R.menu.order_place, menu)
         menuInflater.inflate(R.menu.order_refresh, menu)
 
-        orderReset = menu?.getItem(0)
-        orderSummary = menu?.getItem(1) //TODO: there was a bug, where these would get lost on orientation change
-        orderPlace = menu?.getItem(2)
-        orderRefresh = menu?.getItem(3)
+        orderReset = instantiateMenuItem(orderReset, menu, 0)
+        orderSummary = instantiateMenuItem(orderSummary, menu, 1)
+        orderPlace = instantiateMenuItem(orderPlace, menu, 2)
+        orderRefresh = instantiateMenuItem(orderRefresh, menu, 3)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    /**
+     * Metoda vytvarajuca menuItemy. Zabezpecuje navrat itemu do spravneho stavu viditelnosti pri zmene konfiguracie zariadenie
+     * @param menuItem predstavuje vytvarany menu item
+     * @param menu predstavuje vytvarane menu
+     * @param index predstavuje index [menuItem] v [menu]
+     * @return vracia novy menuItem
+     */
+    fun instantiateMenuItem(menuItem: MenuItem?, menu: Menu?, index: Int): MenuItem? {
+        val isVisible = menuItem?.isVisible
+
+        val newMenuItem = menu?.getItem(index)
+        if (isVisible != null) {
+            newMenuItem?.isVisible = isVisible
+        }
+
+        return newMenuItem
     }
 
     /**
