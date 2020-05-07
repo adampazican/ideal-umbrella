@@ -11,9 +11,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 
-
+/**
+ * Trieda predstavuje prihlasovaciu opbrazovku. Pouzivatel musi zadat spravny email a heslo aby mohol pokracovat do aplikacie.
+ */
 class LoginFragment : Fragment() {
 
+    /**
+     * Metoda, ktora sa zavola pri vytvoreni pohladu. Nastavuje akciu ktora sa vykona, ked pouzivatel stlaci tlacidlo na prihlasenie
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +30,9 @@ class LoginFragment : Fragment() {
         return view
     }
 
+    /**
+     * Akcia vyvolana tlacidlom na prihlasenie. Posle serveru email a heslo a podla odpovede bud pokracujeme do dalsieho pohladu alebo ukazeme toast s chybovou hlaskou
+     */
     private fun attemptLogin(view: View) {
         val email = view.findViewById<EditText>(R.id.login_email_input)?.text
         val password = view.findViewById<EditText>(R.id.login_password_input)?.text
