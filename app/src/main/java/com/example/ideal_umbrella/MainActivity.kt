@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity(), OnChooseMealFragmentInteractionListene
      * @param index predstavuje index [menuItem] v [menu]
      * @return vracia novy menuItem
      */
-    fun instantiateMenuItem(menuItem: MenuItem?, menu: Menu?, index: Int): MenuItem? {
+    private fun instantiateMenuItem(menuItem: MenuItem?, menu: Menu?, index: Int): MenuItem? {
         val isVisible = menuItem?.isVisible
 
         val newMenuItem = menu?.getItem(index)

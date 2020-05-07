@@ -11,8 +11,13 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.Navigation
 import com.example.ideal_umbrella.ChooseMeal.MealContent
 
-
+/**
+ * [TablesDialog] je trieda definujuca dialog na zadanie cisla stola pri novej objednavke
+ */
 class TablesDialog : DialogFragment() {
+    /**
+     * Metoda zavolana pri vytvoreni dialogu. Definuje titulok a spravanie tlacidiel dialogu
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val view = View.inflate(context, R.layout.dialog_table_number, null)
