@@ -11,7 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.ideal_umbrella.Database.Meal
 
+/**
+ * Trieda predstavuje uvodnu obrazovku po prihlaseni
+ */
 class StartScreenFragment : Fragment() {
+    /**
+     * Metoda, ktora sa vyvolava pri vytvoreni pohladu. Definuje akcie, ktore sa stanu po kliknuti na jednotlive tlacidla pohladu
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
