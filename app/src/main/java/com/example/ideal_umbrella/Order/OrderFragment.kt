@@ -11,7 +11,14 @@ import com.example.ideal_umbrella.ChooseMeal.MealContent
 import com.example.ideal_umbrella.MainActivity
 import com.example.ideal_umbrella.R
 
+/**
+ * Trieda predstavuje obrazovku detailu vytvaranej objednavky. Obsahuje tlacidlo na potvrdenie objednavky, po ktoreho stlaceni sa objednavka posle na server
+ */
 class OrderFragment : Fragment() {
+
+    /**
+     * Metoda, ktora sa zavola pri vytvoreni pohladu. Inicializuje layout, adapter a tlacidlo na potvrdenie objednavky
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +36,9 @@ class OrderFragment : Fragment() {
         return view
     }
 
+    /**
+     * Metoda, ktora sa zavola pri zaniku pohladu, zabezpecuje schovanie tlacidla na potvrdenie objednavky
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         MainActivity.orderPlace?.isVisible = false

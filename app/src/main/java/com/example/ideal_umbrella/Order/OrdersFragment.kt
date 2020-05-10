@@ -11,10 +11,16 @@ import android.view.ViewGroup
 import com.example.ideal_umbrella.MainActivity
 import com.example.ideal_umbrella.R
 
+/**
+ * Trieda predstavuje obrazovku, ktora zobrazuje zoznam objednavok
+ */
 class OrdersFragment : Fragment() {
 
     private var listener: OnOrdersFragmentInteractionListener? = null
 
+    /**
+     * Metoda, ktora sa zavola pri vytvoreni pohladu. Inicializuje layout, adapter a tlacidlo na nacitanie objednavok zo servera
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,11 +39,17 @@ class OrdersFragment : Fragment() {
         return view
     }
 
+    /**
+     * Metoda, ktora sa zavola pri zaniku pohladu, zabezpecuje schovanie tlacidla na nacitanie objednavok zo servera
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         MainActivity.orderRefresh?.isVisible = false
     }
 
+    /**
+     * Metoda, ktora sa zavola pri pripojeni fragmentu do activity
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnOrdersFragmentInteractionListener) {
@@ -47,6 +59,9 @@ class OrdersFragment : Fragment() {
         }
     }
 
+    /**
+     * Metoda, ktora sa zavola pri pripojeni fragmentu do activity
+     */
     override fun onDetach() {
         super.onDetach()
         listener = null
