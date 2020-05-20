@@ -12,10 +12,16 @@ import com.example.ideal_umbrella.ChooseMeal.MealContent
 import com.example.ideal_umbrella.MainActivity
 import com.example.ideal_umbrella.R
 
+/**
+ * Trieda predstavuje zoznam typov jedal
+ */
 class MealTypeFragment : Fragment() {
 
     private var listener: OnMealTypesFragmentInteractionListener? = null
 
+    /**
+     * Metoda, ktora sa zavola pri vytvoreni pohladu. Inicializuje layout, adapter a tlacidla na zobrazenie zhrnutia objednavky a na resetnutie objednavky
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,12 +43,18 @@ class MealTypeFragment : Fragment() {
         return view
     }
 
+    /**
+     * Metoda, ktora sa zavola pri zaniku pohladu, zabezpecuje schovanie tlacidla na zobrazenie zhrnutia objednavky a na resetnutie objednavky
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         MainActivity.orderSummary?.isVisible = false
         MainActivity.orderReset?.isVisible= false
     }
 
+    /**
+     * Metoda, ktora sa zavola pri pripojeni fragmentu do activity
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnMealTypesFragmentInteractionListener) {
@@ -52,6 +64,9 @@ class MealTypeFragment : Fragment() {
         }
     }
 
+    /**
+     * Metoda, ktora sa zavola pri odpojeni fragmentu do activity
+     */
     override fun onDetach() {
         super.onDetach()
         listener = null

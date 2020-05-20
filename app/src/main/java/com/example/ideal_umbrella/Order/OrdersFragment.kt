@@ -60,7 +60,7 @@ class OrdersFragment : Fragment() {
     }
 
     /**
-     * Metoda, ktora sa zavola pri pripojeni fragmentu do activity
+     * Metoda, ktora sa zavola pri odpojeni fragmentu do activity
      */
     override fun onDetach() {
         super.onDetach()
