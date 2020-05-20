@@ -5,6 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.ideal_umbrella.MealTypeMenu.MealType
 
+/**
+ * Datova trieda predstavujuca databazovu entitu
+ */
 @Entity
 data class Meal(
     @PrimaryKey val id: Int,
