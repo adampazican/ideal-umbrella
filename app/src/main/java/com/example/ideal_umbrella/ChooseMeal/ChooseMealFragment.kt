@@ -10,11 +10,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ideal_umbrella.*
 
+/**
+ * Trieda predstavujuca zoznam jedal urciteho typu
+ */
 class ChooseMealFragment : Fragment() {
 
     private var mealType: Int = 0
     private var listener: OnChooseMealFragmentInteractionListener? = null
 
+    /**
+     * Metoda ktora sa zavola pri vytvoreni fragmentu. Inicializuje mealType
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,6 +29,10 @@ class ChooseMealFragment : Fragment() {
         }
     }
 
+    /**
+     * Metoda, ktora sa zavola pri vytvoreni pohladu. Inicializuje layout, adapter. Ak je zozname jedal v MealContent objekte prazdny,
+     * tak sa vytvori nove vlakno ktore dotiahne vsetky jedla z databazy a potom upozorni adapter na zmenu dat.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,6 +69,9 @@ class ChooseMealFragment : Fragment() {
         return view
     }
 
+    /**
+     * Metoda, ktora sa zavola pri pripojeni fragmentu do activity
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnChooseMealFragmentInteractionListener) {
@@ -68,6 +81,9 @@ class ChooseMealFragment : Fragment() {
         }
     }
 
+    /**
+     * Metoda, ktora sa zavola pri odpojeni fragmentu do activity
+     */
     override fun onDetach() {
         super.onDetach()
         listener = null
