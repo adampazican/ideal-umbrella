@@ -36,6 +36,9 @@ class LoginFragment : Fragment() {
     private fun attemptLogin(view: View) {
         val email = view.findViewById<EditText>(R.id.login_email_input)?.text
         val password = view.findViewById<EditText>(R.id.login_password_input)?.text
+        val url = view.findViewById<EditText>(R.id.login_url)?.text.toString()
+
+        HttpHandler.initialize(url)
 
         HttpHandler.verifyUser(email.toString(), password.toString()){success ->
             if(success)

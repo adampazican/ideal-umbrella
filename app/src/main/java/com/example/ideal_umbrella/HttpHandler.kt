@@ -17,12 +17,27 @@ import java.net.URL
  * @author Adam Pažičan
  */
 object HttpHandler {
-    private const val PREFIX = "https://idealumbrella.herokuapp.com"
-    private const val UPDATE_DB = "$PREFIX/update-db"
-    private const val VERIFY_USER = "$PREFIX/verify-user"
-    private const val STORE_ORDER = "$PREFIX/store-order"
-    private const val GET_ALL_ORDERS = "$PREFIX/get-all-orders"
-    private const val ORDER_FINISHED = "$PREFIX/order-finished"
+    private var prefix = "https://idealumbrella.herokuapp.com";
+    private lateinit var UPDATE_DB: String
+    private lateinit var VERIFY_USER: String
+    private lateinit var STORE_ORDER: String
+    private lateinit var GET_ALL_ORDERS: String
+    private lateinit var ORDER_FINISHED: String
+
+    /**
+     * Metoda inicializuje url adresy servera pred prihlasenim
+     */
+    fun initialize(url: String?){
+        if (url != null && url != "") {
+            this.prefix = url
+        }
+
+        this.UPDATE_DB = "$prefix/update-db"
+        this.VERIFY_USER = "$prefix/verify-user"
+        this.STORE_ORDER = "$prefix/store-order"
+        this.GET_ALL_ORDERS = "$prefix/get-all-orders"
+        this.ORDER_FINISHED = "$prefix/order-finished"
+    }
 
     /**
      * Na novom vlakne poziada server o vsetky jedla. Po spracovani dat do listu sa zavola [callback] s parametrom mealArray predstavujucim list jedal a success predstavujuci uspesnost poziadavky.
