@@ -75,7 +75,7 @@ object HttpHandler {
      * @param password predstavuje heslo pouzivatela
      * @param callback predstavuje callback, ktory sa zavola po ukonceni poziadavky
      */
-    fun verifyUser(email: String, password: String, callback: (success: Boolean) -> Unit) {
+    fun verifyUser(email: String, password: String, callback: (success: Boolean, error: Exception?) -> Unit) {
         Thread {
             try {
                 val url = URL(VERIFY_USER)
@@ -97,10 +97,10 @@ object HttpHandler {
                 val result = JSONObject(reader.readText())
 
                 reader.close()
-                callback(result["success"] as Boolean)
+                callback(result["success"] as Boolean, null)
             }
             catch (e: Exception) {
-                callback(false)
+                callback(false, e)
             }
 
         }.start()

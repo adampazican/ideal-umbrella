@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>OnChooseMealFragmentInteractionListener - ideal-umbrella</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">ideal-umbrella</a>&nbsp;/&nbsp;<a href="../index.html">com.example.ideal_umbrella.ChooseMeal</a>&nbsp;/&nbsp;<a href="./index.html">OnChooseMealFragmentInteractionListener</a><br/>
+<br/>
+<h1>OnChooseMealFragmentInteractionListener</h1>
+<code><span class="keyword">interface </span><span class="identifier">OnChooseMealFragmentInteractionListener</span></code>
+<p>Interface, ktory sa pouziva na odchytenie akcie stlacenia tlacidiel plus a minus v liste jedal urciteho typu</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-list-fragment-interaction-minus.html">onListFragmentInteractionMinus</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onListFragmentInteractionMinus</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener$onListFragmentInteractionMinus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/button">button</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener$onListFragmentInteractionMinus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/item">item</span><span class="symbol">:</span>&nbsp;<a href="../-meal/index.html"><span class="identifier">Meal</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener$onListFragmentInteractionMinus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/adapter">adapter</span><span class="symbol">:</span>&nbsp;<a href="../-my-choose-meal-recycler-view-adapter/index.html"><span class="identifier">MyChooseMealRecyclerViewAdapter</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener$onListFragmentInteractionMinus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/numberView">numberView</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-list-fragment-interaction-plus.html">onListFragmentInteractionPlus</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onListFragmentInteractionPlus</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener$onListFragmentInteractionPlus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/button">button</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener$onListFragmentInteractionPlus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/item">item</span><span class="symbol">:</span>&nbsp;<a href="../-meal/index.html"><span class="identifier">Meal</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener$onListFragmentInteractionPlus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/adapter">adapter</span><span class="symbol">:</span>&nbsp;<a href="../-my-choose-meal-recycler-view-adapter/index.html"><span class="identifier">MyChooseMealRecyclerViewAdapter</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.ChooseMeal.OnChooseMealFragmentInteractionListener$onListFragmentInteractionPlus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/numberView">numberView</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.example.ideal_umbrella/-main-activity/index.html">MainActivity</a></h4>
+</td>
+<td>
+<p>Hlavna aktivita aplikacie. Odpoveda na vsetky akcie aplikacie kedze je jedina aktivita a aplikacia je rozdelena na fragmenty medzi ktorymi sa naviguje pomocou navigatora</p>
+<code><span class="keyword">class </span><span class="identifier">MainActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">OnChooseMealFragmentInteractionListener</span></a><span class="symbol">, </span><a href="../../com.example.ideal_umbrella.-meal-type-menu/-on-meal-types-fragment-interaction-listener/index.html"><span class="identifier">OnMealTypesFragmentInteractionListener</span></a><span class="symbol">, </span><a href="../../com.example.ideal_umbrella.-order/-on-orders-fragment-interaction-listener/index.html"><span class="identifier">OnOrdersFragmentInteractionListener</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

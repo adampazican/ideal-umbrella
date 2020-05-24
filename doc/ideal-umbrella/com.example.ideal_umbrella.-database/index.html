@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.example.ideal_umbrella.Database - ideal-umbrella</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">ideal-umbrella</a>&nbsp;/&nbsp;<a href="./index.html">com.example.ideal_umbrella.Database</a><br/>
+<br/>
+<h2>Package com.example.ideal_umbrella.Database</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-app-database/index.html">AppDatabase</a></h4>
+</td>
+<td>
+<p>Trieda predstavujuca databazovy system aplikacie. Inicializuju sa cez nu jednotlive databazy,
+entity, verzia databazy pre jednoduche migracie a converteri dat.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AppDatabase</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-meal/index.html">Meal</a></h4>
+</td>
+<td>
+<p>Datova trieda predstavujuca databazovu entitu</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Meal</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-meal-dao/index.html">MealDao</a></h4>
+</td>
+<td>
+<p>Interface definujuci vsetky pouzivane operacie nad databazou</p>
+<code><span class="keyword">interface </span><span class="identifier">MealDao</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-meal-type-converter/index.html">MealTypeConverter</a></h4>
+</td>
+<td>
+<p>Konverter typu jedla na integer, ktory sa vola automaticky pri poziadavkach na databazu (enum -&gt; int pri ukladani, int -&gt; enum pri citani)</p>
+<code><span class="keyword">object </span><span class="identifier">MealTypeConverter</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

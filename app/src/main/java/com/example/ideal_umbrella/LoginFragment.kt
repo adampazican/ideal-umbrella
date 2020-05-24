@@ -12,9 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 
 /**
- * Trieda predstavuje prihlasovaciu opbrazovku. Pouzivatel musi zadat spravny email a heslo aby mohol pokracovat do aplikacie.
+ * Trieda predstavuje prihlasovaciu obrazovku. Pouzivatel musi zadat spravny email a heslo aby mohol pokracovat do aplikacie.
  */
 class LoginFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
 
     /**
      * Metoda, ktora sa zavola pri vytvoreni pohladu. Nastavuje akciu ktora sa vykona, ked pouzivatel stlaci tlacidlo na prihlasenie
@@ -40,12 +45,19 @@ class LoginFragment : Fragment() {
 
         HttpHandler.initialize(url)
 
-        HttpHandler.verifyUser(email.toString(), password.toString()){success ->
+        HttpHandler.verifyUser(email.toString(), password.toString()){success, error ->
             if(success)
                 Navigation.findNavController(activity as Activity, R.id.nav_host_fragment).navigate(R.id.startScreenFragment)
             else {
-                activity?.runOnUiThread {
-                    Toast.makeText(context, context?.getString(R.string.login_invalid_credentials), Toast.LENGTH_SHORT).show()
+                if(error == null) {
+                    activity?.runOnUiThread {
+                        Toast.makeText(context, context?.getString(R.string.login_invalid_credentials), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else {
+                    activity?.runOnUiThread {
+                        Toast.makeText(context, context?.getString(R.string.login_network_error), Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

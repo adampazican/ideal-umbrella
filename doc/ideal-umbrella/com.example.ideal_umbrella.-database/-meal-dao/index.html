@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MealDao - ideal-umbrella</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">ideal-umbrella</a>&nbsp;/&nbsp;<a href="../index.html">com.example.ideal_umbrella.Database</a>&nbsp;/&nbsp;<a href="./index.html">MealDao</a><br/>
+<br/>
+<h1>MealDao</h1>
+<code><span class="keyword">interface </span><span class="identifier">MealDao</span></code>
+<p>Interface definujuci vsetky pouzivane operacie nad databazou</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="delete-all.html">deleteAll</a></h4>
+</td>
+<td>
+<p>Vymaze vsetky jedla z databazy</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-all.html">getAll</a></h4>
+</td>
+<td>
+<p>Selectuje vsetky jedla z databazy</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAll</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-meal/index.html"><span class="identifier">Meal</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="insert-all.html">insertAll</a></h4>
+</td>
+<td>
+<p>Vklada do databayz list jedal</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">insertAll</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.Database.MealDao$insertAll(kotlin.collections.List((com.example.ideal_umbrella.Database.Meal)))/meals">meals</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-meal/index.html"><span class="identifier">Meal</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

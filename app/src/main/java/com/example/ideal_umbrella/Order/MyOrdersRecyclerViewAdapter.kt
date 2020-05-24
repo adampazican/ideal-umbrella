@@ -46,7 +46,7 @@ class MyOrdersRecyclerViewAdapter(
             holder.mView.setBackgroundColor(context.getColor(R.color.colorBackground))
 
 
-        holder.mView.setOnClickListener {v ->
+        holder.mView.setOnClickListener {_ ->
             mListener?.onOrdersFragmentInteraction(item, this)
         }
     }

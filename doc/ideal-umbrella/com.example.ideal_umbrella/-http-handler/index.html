@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HttpHandler - ideal-umbrella</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">ideal-umbrella</a>&nbsp;/&nbsp;<a href="../index.html">com.example.ideal_umbrella</a>&nbsp;/&nbsp;<a href="./index.html">HttpHandler</a><br/>
+<br/>
+<h1>HttpHandler</h1>
+<code><span class="keyword">object </span><span class="identifier">HttpHandler</span></code>
+<p>Trieda starajuca sa o komunikaciu so serverom</p>
+<p><strong>Author</strong><br/>
+Adam Pažičan</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="get-all-meals.html">getAllMeals</a></h4>
+</td>
+<td>
+<p>Na novom vlakne poziada server o vsetky jedla. Po spracovani dat do listu sa zavola <a href="get-all-meals.html#com.example.ideal_umbrella.HttpHandler$getAllMeals(kotlin.Function2((((com.example.ideal_umbrella.ChooseMeal.Meal)), kotlin.Boolean, kotlin.Unit)))/callback">callback</a> s parametrom mealArray predstavujucim list jedal a success predstavujuci uspesnost poziadavky.</p>
+<code><span class="keyword">fun </span><span class="identifier">getAllMeals</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$getAllMeals(kotlin.Function2((((com.example.ideal_umbrella.ChooseMeal.Meal)), kotlin.Boolean, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&lt;</span><a href="../../com.example.ideal_umbrella.-choose-meal/-meal/index.html"><span class="identifier">Meal</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<span class="identifier">success</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-all-orders.html">getAllOrders</a></h4>
+</td>
+<td>
+<p>Na novom vlakne poziada server o vsetky evidovane objednavky</p>
+<code><span class="keyword">fun </span><span class="identifier">getAllOrders</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$getAllOrders(kotlin.Function2((((com.example.ideal_umbrella.Order.Order)), kotlin.Boolean, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">&lt;</span><a href="../../com.example.ideal_umbrella.-order/-order/index.html"><span class="identifier">Order</span></a><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<span class="identifier">success</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="initialize.html">initialize</a></h4>
+</td>
+<td>
+<p>Metoda inicializuje url adresy servera pred prihlasenim</p>
+<code><span class="keyword">fun </span><span class="identifier">initialize</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$initialize(kotlin.String)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="make-order-finished.html">makeOrderFinished</a></h4>
+</td>
+<td>
+<p>Na novom vlakne poziada server o evidovanie obejdnavky ako ukoncenej (pripadne neukoncenej)</p>
+<code><span class="keyword">fun </span><span class="identifier">makeOrderFinished</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$makeOrderFinished(kotlin.Int, kotlin.Boolean, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/orderId">orderId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$makeOrderFinished(kotlin.Int, kotlin.Boolean, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/finished">finished</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$makeOrderFinished(kotlin.Int, kotlin.Boolean, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">success</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="store-order.html">storeOrder</a></h4>
+</td>
+<td>
+<p>Na novom vlakne poziada server o evidenciu objednavky</p>
+<code><span class="keyword">fun </span><span class="identifier">storeOrder</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$storeOrder(com.example.ideal_umbrella.Order.Order, kotlin.Function2((kotlin.Boolean, kotlin.Int, kotlin.Unit)))/order">order</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-order/-order/index.html"><span class="identifier">Order</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$storeOrder(com.example.ideal_umbrella.Order.Order, kotlin.Function2((kotlin.Boolean, kotlin.Int, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">success</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="verify-user.html">verifyUser</a></h4>
+</td>
+<td>
+<p>Na novom vlakne poziada server o validaciu pouzivatelskych udajov</p>
+<code><span class="keyword">fun </span><span class="identifier">verifyUser</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$verifyUser(kotlin.String, kotlin.String, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$verifyUser(kotlin.String, kotlin.String, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.HttpHandler$verifyUser(kotlin.String, kotlin.String, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">success</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
