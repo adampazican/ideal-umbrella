@@ -1,0 +1,136 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MainActivity - ideal-umbrella</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">ideal-umbrella</a>&nbsp;/&nbsp;<a href="../index.html">com.example.ideal_umbrella</a>&nbsp;/&nbsp;<a href="./index.html">MainActivity</a><br/>
+<br/>
+<h1>MainActivity</h1>
+<code><span class="keyword">class </span><span class="identifier">MainActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-choose-meal/-on-choose-meal-fragment-interaction-listener/index.html"><span class="identifier">OnChooseMealFragmentInteractionListener</span></a><span class="symbol">, </span><a href="../../com.example.ideal_umbrella.-meal-type-menu/-on-meal-types-fragment-interaction-listener/index.html"><span class="identifier">OnMealTypesFragmentInteractionListener</span></a><span class="symbol">, </span><a href="../../com.example.ideal_umbrella.-order/-on-orders-fragment-interaction-listener/index.html"><span class="identifier">OnOrdersFragmentInteractionListener</span></a></code>
+<p>Hlavna aktivita aplikacie. Odpoveda na vsetky akcie aplikacie kedze je jedina aktivita a aplikacia je rozdelena na fragmenty medzi ktorymi sa naviguje pomocou navigatora</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Hlavna aktivita aplikacie. Odpoveda na vsetky akcie aplikacie kedze je jedina aktivita a aplikacia je rozdelena na fragmenty medzi ktorymi sa naviguje pomocou navigatora</p>
+<code><span class="identifier">MainActivity</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-create.html">onCreate</a></h4>
+</td>
+<td>
+<p>Akcia vyvolana pri vytvoreni aktivity, inicializuje databazu, vytvara action bar</p>
+<code><span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onCreate()/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-create-options-menu.html">onCreateOptionsMenu</a></h4>
+</td>
+<td>
+<p>Akcia vyvolana pri vytvoreni menu, inicializuje menu tlacidla</p>
+<code><span class="keyword">fun </span><span class="identifier">onCreateOptionsMenu</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onCreateOptionsMenu()/menu">menu</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-destroy.html">onDestroy</a></h4>
+</td>
+<td>
+<p>Akcia vyvolana pri zniceni aktivity, zatvara databazu</p>
+<code><span class="keyword">fun </span><span class="identifier">onDestroy</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-list-fragment-interaction-minus.html">onListFragmentInteractionMinus</a></h4>
+</td>
+<td>
+<p>Akcia vyvolana stlacenim tlacidla minus pri konkretom jedle v ponuke, co zmensi pocet objednanych kusov</p>
+<code><span class="keyword">fun </span><span class="identifier">onListFragmentInteractionMinus</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onListFragmentInteractionMinus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/button">button</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onListFragmentInteractionMinus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/item">item</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-choose-meal/-meal/index.html"><span class="identifier">Meal</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onListFragmentInteractionMinus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/adapter">adapter</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-choose-meal/-my-choose-meal-recycler-view-adapter/index.html"><span class="identifier">MyChooseMealRecyclerViewAdapter</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onListFragmentInteractionMinus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/numberView">numberView</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-list-fragment-interaction-plus.html">onListFragmentInteractionPlus</a></h4>
+</td>
+<td>
+<p>Akcia vyvolana stlacenim tlacidla plus pri konkretom jedle v ponuke, co zvacsi pocet objednanych kusov</p>
+<code><span class="keyword">fun </span><span class="identifier">onListFragmentInteractionPlus</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onListFragmentInteractionPlus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/button">button</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onListFragmentInteractionPlus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/item">item</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-choose-meal/-meal/index.html"><span class="identifier">Meal</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onListFragmentInteractionPlus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/adapter">adapter</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-choose-meal/-my-choose-meal-recycler-view-adapter/index.html"><span class="identifier">MyChooseMealRecyclerViewAdapter</span></a><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onListFragmentInteractionPlus(, com.example.ideal_umbrella.ChooseMeal.Meal, com.example.ideal_umbrella.ChooseMeal.MyChooseMealRecyclerViewAdapter, )/numberView">numberView</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-meal-types-fragment-interaction.html">onMealTypesFragmentInteraction</a></h4>
+</td>
+<td>
+<p>Akcia vyvolana pri kliknuti na typ jedla pri objednavani, otvori list jedal tohoto typu</p>
+<code><span class="keyword">fun </span><span class="identifier">onMealTypesFragmentInteraction</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onMealTypesFragmentInteraction(com.example.ideal_umbrella.MealTypeMenu.MealType)/item">item</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-meal-type-menu/-meal-type/index.html"><span class="identifier">MealType</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-options-item-selected.html">onOptionsItemSelected</a></h4>
+</td>
+<td>
+<p>Akcia vyvolana stlacenim tlacidla menu</p>
+<code><span class="keyword">fun </span><span class="identifier">onOptionsItemSelected</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onOptionsItemSelected()/item">item</span><span class="symbol">:</span>&nbsp;<span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-orders-fragment-interaction.html">onOrdersFragmentInteraction</a></h4>
+</td>
+<td>
+<p>Akcia vyvolana stlacenim objednavky v liste objednavok</p>
+<code><span class="keyword">fun </span><span class="identifier">onOrdersFragmentInteraction</span><span class="symbol">(</span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onOrdersFragmentInteraction(com.example.ideal_umbrella.Order.Order, com.example.ideal_umbrella.Order.MyOrdersRecyclerViewAdapter)/order">order</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-order/-order/index.html"><span class="identifier">Order</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.example.ideal_umbrella.MainActivity$onOrdersFragmentInteraction(com.example.ideal_umbrella.Order.Order, com.example.ideal_umbrella.Order.MyOrdersRecyclerViewAdapter)/adapter">adapter</span><span class="symbol">:</span>&nbsp;<a href="../../com.example.ideal_umbrella.-order/-my-orders-recycler-view-adapter/index.html"><span class="identifier">MyOrdersRecyclerViewAdapter</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="db.html">db</a></h4>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">db</span><span class="symbol">: </span><a href="../../com.example.ideal_umbrella.-database/-app-database/index.html"><span class="identifier">AppDatabase</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="order-place.html">orderPlace</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">orderPlace</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="order-refresh.html">orderRefresh</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">orderRefresh</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="order-reset.html">orderReset</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">orderReset</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="order-summary.html">orderSummary</a></h4>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">orderSummary</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

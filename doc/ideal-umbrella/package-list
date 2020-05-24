@@ -1,0 +1,8 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+com.example.ideal_umbrella
+com.example.ideal_umbrella.ChooseMeal
+com.example.ideal_umbrella.Database
+com.example.ideal_umbrella.MealTypeMenu
+com.example.ideal_umbrella.Order

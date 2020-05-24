@@ -20,12 +20,41 @@
         android:label="fragment_start_screen"
         tools:layout="@layout/fragment_start_screen" >
         <action
-            android:id="@+id/action_startScreenFragment_to_chooseMealFragment"
-            app:destination="@id/chooseMealFragment" />
+            android:id="@+id/action_startScreenFragment_to_mealTypeFragment"
+            app:destination="@id/mealTypeFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseMealFragment"
-        android:name="com.example.ideal_umbrella.ChooseMealFragment"
+        android:name="com.example.ideal_umbrella.ChooseMeal.ChooseMealFragment"
         android:label="fragment_choose_meal_list"
-        tools:layout="@layout/fragment_choose_meal_list" />
+        tools:layout="@layout/fragment_choose_meal_list" >
+        <action
+            android:id="@+id/action_chooseMealFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealTypeFragment"
+        android:name="com.example.ideal_umbrella.MealTypeMenu.MealTypeFragment"
+        android:label="fragment_meal_type_list"
+        tools:layout="@layout/fragment_meal_type_list" >
+        <action
+            android:id="@+id/action_mealTypeFragment_to_chooseMealFragment"
+            app:destination="@id/chooseMealFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.example.ideal_umbrella.Order.OrderFragment"
+        android:label="fragment_order_list"
+        tools:layout="@layout/fragment_order_list" >
+        <action
+            android:id="@+id/action_orderFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:popUpTo="@id/mealTypeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.ideal_umbrella.Order.OrdersFragment"
+        android:label="fragment_orders_list"
+        tools:layout="@layout/fragment_orders_list" />
 </navigation>
